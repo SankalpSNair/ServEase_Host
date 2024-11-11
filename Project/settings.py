@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-vxeml(p&2*z6r7%&9@1!pqb67b#6@k43eqf(xbr%ue(m5bh2e#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -59,7 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware', #new
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
+    #new
     # 'allauth.account.middleware.AccountMiddleware', #new
 ]
 
