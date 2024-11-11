@@ -1943,69 +1943,7 @@ def download_invoice(request, booking_id):
 
 
 
-import base64
-import numpy as np
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from deepface import DeepFace
-from .models import Users
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-import io
-from PIL import Image
 
-@csrf_exempt
-def worker_verification(request):
-    if request.method == 'GET':
-        return render(request, 'worker_temp/verification.html')
-    
-    elif request.method == 'POST':
-        user_id = request.session.get('user_id')
-        if not user_id:
-            return JsonResponse({'success': False, 'message': 'User not logged in'})
-
-        captured_image = request.POST.get('captured_image')
-        
-        if not captured_image:
-            return JsonResponse({'success': False, 'message': 'No image data received'})
-        
-        try:
-            # Remove the data URL prefix
-            _, captured_image = captured_image.split(',', 1)
-            
-            # Convert base64 string to image
-            captured_image = base64.b64decode(captured_image)
-            captured_image = Image.open(io.BytesIO(captured_image))
-            
-            # Convert PIL Image to numpy array
-            captured_image = np.array(captured_image)
-            
-            # Get the worker's reference image
-            user = get_object_or_404(Users, user_id=user_id)
-            if not user.image:
-                return JsonResponse({'success': False, 'message': 'No profile image found for this user'})
-
-            reference_image = Image.open(user.image.path)
-            reference_image = np.array(reference_image)
-            
-            # Perform facial verification
-            result = DeepFace.verify(captured_image, reference_image, enforce_detection=False)
-            
-            if result['verified']:
-                # Update user's verification status
-                user.is_verified = True
-                user.save()
-                return JsonResponse({
-                    'success': True, 
-                    'message': 'Verification successful',
-                    'redirect_url': reverse('worker_index')
-                })
-            else:
-                return JsonResponse({'success': False, 'message': 'Verification failed'})
-        except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)})
-    
-    return JsonResponse({'success': False, 'message': 'Invalid request method'})
 
 
 import logging
@@ -2310,15 +2248,6 @@ def is_admin(user):
     return user.is_authenticated and user.is_staff
 
 
-def view_verification(request):
-    # Fetch all worker verifications, ordered by submission date
-    verifications = WorkerVerification.objects.all().order_by('-submitted_at')
-
-    context = {
-        'verifications': verifications,
-    }
-
-    return render(request, 'admin_temp/worker_verification.html', context)
 
 
 
@@ -2442,8 +2371,15 @@ def generate_report(request):
                     queryset = queryset.filter(status=filters['paymentStatus'])
 
                 results = list(queryset.values(
-                    'payment_id', 'booking_id__worker_type', 'amount', 'status', 'created_at'
-                ))
+                    'payment_id',
+                    'booking_id__customer_id__firstname',
+                    'booking_id__customer_id__lastname',
+                    'booking_id__worker_id__firstname',
+                    'booking_id__worker_id__lastname',
+                    'amount',
+                    'status',
+                    'created_at'
+                ).order_by('-created_at'))  # Most recent payments first
 
             logger.info(f"Generated results: {results[:5]}...")  # Log first 5 results
             return JsonResponse({'success': True, 'results': results})
