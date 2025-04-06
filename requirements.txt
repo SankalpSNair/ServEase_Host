@@ -76,3 +76,4 @@ gunicorn
 whitenoise
 psycopg2-binary
 django-environ
+num2words
