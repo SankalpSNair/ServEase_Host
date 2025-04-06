@@ -1,0 +1,440 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+    <style>
+        .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+      
+        .blog-post-thumb {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .blog-post-thumb .blog-content {
+            padding: 15px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        .blog-post-thumb .img img {
+            width: 65%;
+            height: auto;
+            display: inline;
+        
+        }
+        html, body {
+            overflow: hidden;
+        }
+    </style>
+    <style>
+        /* General styles for the profile section */
+#profile {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.profile-table, .profile-table th, .profile-table td {
+    border: 1px solid #ddd; /* Border color and thickness */
+}
+
+.profile-table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.profile-label {
+    font-weight: bold;
+    width: 150px; /* Adjust width as needed */
+    text-align: right;
+}
+
+.profile-value {
+    text-align: left;
+}
+
+.profile-pic-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+}
+
+.save-profile-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.save-profile-btn:hover {
+    background-color: #0056b3;
+}
+input, optgroup, select, textarea {
+    margin: 0;
+    width: 480px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+        .booking-form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-form h2 {
+            color: #9064E9;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            padding-right: 15px;
+            padding-left: 15px;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .form-group.full-width {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #9064E9;
+            box-shadow: 0 0 0 0.2rem rgba(144, 100, 233, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #9064E9;
+            border-color: #9064E9;
+            padding: 10px 30px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #7040C0;
+            border-color: #7040C0;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+    </head>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+
+                            <li><a href="{% url 'home' %}" class="active" style="font-size: 15px;">Home</a></li>
+                            <li><a href="#features" style="font-size: 15px;">About</a></li>
+                            <li><a href="{%url 'services'%}" style="font-size: 15px;">Services</a></li>
+                            <li><a href="#" style="font-size: 15px;">Blog Entries</a></li>
+                            <li><a href="#" style="font-size: 15px;">Contact Us</a></li>
+                            <li><a href="{% url 'view_bookings' %}" style="font-size: 15px;">Bookings</a></li>
+                            <li><a href="{% url 'logout' %}" style="font-size: 15px;">Log Out</a></li>
+                                
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- ***** Blog Start ***** -->
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- ***** Features Small Start ***** -->
+    <section id="profile" class="section home-feature">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="booking-form">
+                        <h2 class="text-center mb-4">Book Service with {{ nurse.firstname }} {{ nurse.lastname }}</h2>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="appointment_date">Appointment Date:</label>
+                                    <input type="date" id="appointment_date" name="appointment_date" class="form-control" required min="{{ today_date }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="appointment_time">Appointment Time:</label>
+                                    <input type="time" id="appointment_time" name="appointment_time" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service_type">Service Type:</label>
+                                    <select id="service_type" name="service_type" class="form-control" required>
+                                        <option value="">Select a service</option>
+                                        <option value="general_care">General Care</option>
+                                        <option value="medication_management">Medication Management</option>
+                                        <option value="wound_care">Wound Care</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number:</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" required pattern="[0-9]{10}" placeholder="Enter 10-digit phone number">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="description">Service Description:</label>
+                                    <textarea id="description" name="description" rows="3" class="form-control" required placeholder="Please describe the care you need"></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="address">Address:</label>
+                                    <textarea id="address" name="address" rows="3" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="hours_booked">Number of Hours:</label>
+                                    <input type="number" id="hours_booked" name="hours_booked" min="1" max="8" value="1" class="form-control" required>
+                                </div>
+                                <div class="form-group full-width text-center">
+                                    <p>Hourly Rate: ₹{{ hourly_rate }}</p>
+                                    <p>Estimated Total: ₹<span id="estimated_total">{{ hourly_rate }}</span></p>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Request Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js5' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script>
+        // JavaScript to enforce time constraints
+        document.querySelector('form').addEventListener('submit', function (e) {
+            var timeInput = document.getElementById('appointment_time');
+            var timeValue = timeInput.value;
+    
+            if (timeValue) {
+                var timeParts = timeValue.split(':');
+                var hours = parseInt(timeParts[0], 10);
+    
+                if (hours < 6 || hours >= 18) {
+                    e.preventDefault(); // Prevent form submission
+                    alert('The appointment time must be between 06:00 and 18:00.');
+                    timeInput.focus();
+                }
+            }
+        });
+    
+        // Set the minimum date to today and the maximum date to one and a half years from today
+        var today = new Date();
+        var maxDate = new Date();
+        maxDate.setFullYear(today.getFullYear(), today.getMonth() + 18);
+    
+        document.getElementById('appointment_date').setAttribute('min', today.toISOString().split('T')[0]);
+        document.getElementById('appointment_date').setAttribute('max', maxDate.toISOString().split('T')[0]);
+
+        document.getElementById('hours_booked').addEventListener('input', function() {
+            var hours = this.value;
+            var rate = {{ hourly_rate }};
+            var total = (hours * rate).toFixed(2);
+            document.getElementById('estimated_total').textContent = total;
+        });
+    </script>
+
+    <!-- For profile -->
+  </body>
+</html>

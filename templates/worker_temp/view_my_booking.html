@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>View My Bookings</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'work_assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'work_assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'work_assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-image: url('{% static "work_assets/img/hero-bg-light.webp" %}');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding-top: 80px; /* Adjust this value based on your header height */
+    }
+
+    .main {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .booking-section {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding-top: 40px;
+      padding-bottom: 60px;
+      background-color: rgba(248, 249, 250, 0.9);
+    }
+
+    .booking-section .container {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .booking-section .row {
+      flex: 1 0 auto;
+    }
+
+    .header {
+      z-index: 1000;
+      background-color: rgb(255 255 255);
+    }
+
+    .booking-card {
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
+      margin-bottom: 2rem;
+    }
+
+    .booking-heading {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    }
+
+    .footer {
+      flex-shrink: 0;
+      background-color: rgba(248, 249, 250, 0.9);
+    }
+
+    .booking-table {
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .booking-table th {
+      background-color: #f8f9fa;
+    }
+
+    .booking-table td, .booking-table th {
+      vertical-align: middle;
+    }
+
+    @media (max-width: 767px) {
+      .booking-table {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="{% url 'worker_index' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">ServEase</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'worker_index' %}#hero">Home</a></li>
+          <li><a href="{% url 'worker_index' %}#about">About</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="{% url 'view_my_booking' %}">Bookings</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'worker_verification' %}">Verification</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'worker_profile' %}">Profile</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <section id="bookings" class="booking-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <h2 class="text-center mb-4">My Bookings</h2>
+            {% if bookings %}
+              <div class="table-responsive">
+                <table class="table table-striped table-hover booking-table">
+                  <thead>
+                    <tr>
+                      <th>Customer Name</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Service Type</th>
+                      <th>Details</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for booking in bookings %}
+                      <tr>
+                        <td>{{ booking.customer_firstname }} {{ booking.customer_lastname }}</td>
+                        <td>{{ booking.appointment_date }}</td>
+                        <td>{{ booking.appointment_time }}</td>
+                        <td>{{ booking.worker_type }}</td>
+                        <td>
+                          <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#bookingModal{{ booking.id }}">
+                            View
+                          </button>
+                        </td>
+                        <td>
+                          {% if booking.status == 'Pending' %}
+                            <span class="badge bg-warning">Pending</span>
+                          {% elif booking.status == 'Confirmed' %}
+                            <span class="badge bg-primary">Confirmed</span>
+                          {% elif booking.status == 'Paid' %}
+                            <span class="badge bg-success">Paid</span>
+                          {% elif booking.status == 'Completed' %}
+                            <span class="badge bg-info">Completed</span>
+                          {% elif booking.status == 'Cancelled' %}
+                            <span class="badge bg-danger">Cancelled</span>
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if booking.status == 'Pending' %}
+                            <button type="button" class="btn btn-sm btn-success accept-booking" data-booking-id="{{ booking.id }}">
+                              Accept
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger reject-booking" data-booking-id="{{ booking.id }}">
+                              Reject
+                            </button>
+                          {% elif booking.status == 'Confirmed' or booking.status == 'Paid' %}
+                            <button type="button" class="btn btn-sm btn-primary" onclick="markAsCompleted(this, {{ booking.id }})">
+                              Mark Complete
+                            </button>
+                          {% elif booking.status == 'Completed' %}
+                            <span class="text-success"><i class="bi bi-check-circle"></i> Completed</span>
+                          {% elif booking.status == 'Cancelled' %}
+                            <span class="text-danger"><i class="bi bi-x-circle"></i> Cancelled</span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+              {% for booking in bookings %}
+                <!-- Modal for each booking -->
+                <div class="modal fade" id="bookingModal{{ booking.id }}" tabindex="-1" aria-labelledby="bookingModalLabel{{ booking.id }}" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel{{ booking.id }}">Booking Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p><strong>Customer Name:</strong> {{ booking.customer_firstname }} {{ booking.customer_lastname }}</p>
+                        <p><strong>Customer Email:</strong> {{ booking.customer_email }}</p>
+                        <p><strong>Customer Phone:</strong> {{ booking.customer_phone }}</p>
+                        <p><strong>Appointment Date:</strong> {{ booking.appointment_date }}</p>
+                        <p><strong>Appointment Time:</strong> {{ booking.appointment_time }}</p>
+                        <p><strong>Service Type:</strong> {{ booking.worker_type }}</p>
+                        <p><strong>Status:</strong> {{ booking.status }}</p>
+                        {% if booking.address %}
+                          <p><strong>Address:</strong> {{ booking.address }}</p>
+                        {% endif %}
+                        {% if booking.description %}
+                          <p><strong>Description:</strong> {{ booking.description }}</p>
+                        {% endif %}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <p class="text-center">No bookings found.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">ServEase</strong><span>All Rights Reserved</span></p>
+      <div class="credits">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'work_assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'work_assets/js/main.js' %}"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle booking acceptance
+      document.querySelectorAll('.accept-booking').forEach(button => {
+        button.addEventListener('click', function() {
+          const bookingId = this.getAttribute('data-booking-id');
+          updateBookingStatus(bookingId, 'Confirmed');
+        });
+      });
+      
+      // Handle booking rejection
+      document.querySelectorAll('.reject-booking').forEach(button => {
+        button.addEventListener('click', function() {
+          const bookingId = this.getAttribute('data-booking-id');
+          updateBookingStatus(bookingId, 'Cancelled');
+        });
+      });
+    });
+    
+    function markAsCompleted(button, bookingId) {
+      console.log('Marking as completed for booking ID:', bookingId);
+      
+      fetch("{% url 'update_worker_booking_status' %}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}'  // Ensure CSRF token is included
+        },
+        body: JSON.stringify({ booking_id: bookingId, status: 'Completed' })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Reload the page to reflect the changes
+          location.reload();
+        } else {
+          alert('Failed to update status: ' + data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the status.');
+      });
+    }
+    
+    function updateBookingStatus(bookingId, status) {
+      fetch("{% url 'update_worker_booking_status' %}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({ booking_id: bookingId, status: status })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Reload the page to reflect the changes
+          location.reload();
+        } else {
+          alert('Failed to update status: ' + data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while updating the booking status.');
+      });
+    }
+  </script>
+
+</body>
+
+</html>

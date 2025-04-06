@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        .main {
+        background: #f8f8f8;
+        padding: 50px 0;
+        }
+        
+        .header {
+            background-color: #f8f9fa;
+            /* padding: 10px;    */
+            padding-left: 10px;
+            text-align: left;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        html, body {
+            /* overflow: scroll; */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px; 
+            font-size: 20px;
+        }
+        
+        label{
+            font-size:20px;
+            padding-bottom: 18px;
+        }
+        input{
+            padding-left: 0px;
+            font-size: 15px;
+            
+        }
+        .signup-form{
+            width:auto;
+            height:auto;
+        }
+        .signup-content {
+        padding: 13px 0;
+        }
+        .form-title{
+            margin-bottom: 17px;
+            margin-top: 10px;
+        }
+        .form-submit{
+            margin-bottom:10px;
+        }
+        .signup-image {
+        margin-top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>ServEase</h2>
+    </div>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign Up</h2>
+                        <form method="POST" class="register-form" id="register-form" action="" onsubmit="return validateForm()">
+
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <!-- <label for="fname">First Name</label> -->
+                                FirstName<input type="text" name="fname" id="fname" placeholder="type here..."/>
+                                <span id="fname-error" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="lname"><i class="zmdi zmdi-account material-icons-name"></i></label> -->
+                                LastName<input type="text" name="lname" id="lname" placeholder="type here..."/>
+                                <span id="lname-error" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="email"><i class="zmdi zmdi-email"></i></label> -->
+                                Email<input type="email" name="email" id="email" placeholder="type here..."/>
+                                <span id="email-error" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="password"><i class="zmdi zmdi-lock"></i></label> -->
+                                Password<input type="password" name="password" id="password" placeholder="type here..."/>
+                                <span id="password-error" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label> -->
+                                Re-enter Password<input type="password" name="re_pass" id="re_pass" placeholder="type here..."/>
+                                <span id="re_pass-error" class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'images/signup-image.jpg'%}" alt="sign up image"></figure>
+                        <a href="{% url 'login' %}" class="signup-image-link" style="text-decoration: none; font-size: 16px;"><strong>I am already member</strong></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    function validateForm() {
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var re_pass = document.getElementById("re_pass").value;
+        var isValid = true;
+
+        // Clear previous error messages
+        document.getElementById("fname-error").textContent = "";
+        document.getElementById("lname-error").textContent = "";
+        document.getElementById("email-error").textContent = "";
+        document.getElementById("password-error").textContent = "";
+        document.getElementById("re_pass-error").textContent = "";
+
+        // Validate first name (only alphabets)
+        var nameRegex = /^[A-Za-z]+$/;
+        if (!fname.match(nameRegex)) {
+            document.getElementById("fname-error").textContent = "First name should only contain alphabets.";
+            isValid = false;
+        }
+
+        // Validate last name (only alphabets)
+        if (!lname.match(nameRegex)) {
+            document.getElementById("lname-error").textContent = "Last name should only contain alphabets.";
+            isValid = false;
+        }
+
+        // Validate email (letters between @ and ., valid domain)
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        if (!email.match(emailRegex)) {
+            document.getElementById("email-error").textContent = "Enter a valid email address (use letters only between '@' and '.' and a valid domain).";
+            isValid = false;
+        }
+
+        // Validate password (8-16 characters, uppercase, lowercase, digit, special character)
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+        if (!password.match(passwordRegex)) {
+            document.getElementById("password-error").textContent = "Password must be 8-16 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+            isValid = false;
+        }
+
+        // Validate repeated password
+        if (password !== re_pass) {
+            document.getElementById("re_pass-error").textContent = "Passwords do not match.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>

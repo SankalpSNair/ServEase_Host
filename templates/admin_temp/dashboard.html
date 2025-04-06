@@ -1,0 +1,518 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/iconly/bold.css'%}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/app.css' %}">
+    <link rel="shortcut icon" href="{% static 'adm_assets/images/favicon.svg' %}" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="#">ServEase</a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+<!-- DashboardPage -->
+
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="{% url 'dashboard' %}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+<!-- View Users  -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>View Users</span>
+                            </a>
+                            <ul class="submenu ">
+                                <!-- <li class="submenu-item ">
+                                    <a href="{%url 'full_users'%}">All Users</a>
+                                </li> -->
+                                <li class="submenu-item ">
+                                    <a href="{%url 'full_customers'%}">Customers</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'full_workers'%}">Workers</a>
+                                </li>
+                            </ul>
+                        </li>
+<!-- Booking  -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>View Bookings</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{%url 'new_bookings'%}">New Requests</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Allocated Bookings</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">All Bookings</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Manage Workers</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_home_nurses' %}">Home Nurse</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_house_maids' %}">House Maid</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_electricians' %}">Electrician</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_plumbers' %}">Plumber</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_carpenters' %}">Carpenter</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- verify Customers  -->
+                        <li class="sidebar-item ">
+                            <a href="{%url 'view_verification'%}" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Verification</span>
+                            </a>
+                        </li>
+                        
+                        <!-- Report Generation -->
+                        <li class="sidebar-item ">
+                            <a href="{% url 'report_generation' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span>Report Generation</span>
+                            </a>
+                        </li>
+
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Admin Dashboard</h3>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-12 col-lg-9">
+                        <div class="row">
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon purple">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Total Users</h6>
+                                                <h6 class="font-extrabold mb-0">{{ total_users }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Customers</h6>
+                                                <h6 class="font-extrabold mb-0">{{ total_customers }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Workers</h6>
+                                                <h6 class="font-extrabold mb-0">{{ total_workers }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon red">
+                                                    <i class="iconly-boldBookmark"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Total Bookings</h6>
+                                                <h6 class="font-extrabold mb-0">{{ total_bookings }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Monthly Bookings Chart</h4>
+                                        <form id="yearSelectForm" class="d-flex align-items-center">
+                                            <label for="yearSelect" class="me-2">Select Year:</label>
+                                            <select id="yearSelect" class="form-select" style="width: auto;">
+                                                <!-- We'll populate this dynamically in JavaScript -->
+                                            </select>
+                                        </form>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="monthlyBookingsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-xl-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>District Based Bookings</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="districtBookingsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Latest Feedbacks</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-lg">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Feedback</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="col-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar avatar-md">
+                                                                    <img src="{% static 'adm_assets/images/faces/5.jpg' %}">
+                                                                </div>
+                                                                <p class="font-bold ms-3 mb-0">User 1</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p class=" mb-0">feedback 1</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-3">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar avatar-md">
+                                                                    <img src="{% static 'adm_assets/images/faces/2.jpg' %}">
+                                                                </div>
+                                                                <p class="font-bold ms-3 mb-0">User 2</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p class=" mb-0">feedback 2</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body py-4 px-5">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-xl">
+                                        <img src="{% static 'adm_assets/images/faces/1.jpg' %}" alt="Face 1">
+                                    </div>
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold">Admin</h5>
+                                        <h6 class="text-muted mb-0">admin@gmail.com</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Recent Messages</h4>
+                            </div>
+                            <div class="card-content pb-4">
+                                {% for message in recent_messages %}
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ message.sender.image.url }}" alt="{{ message.sender.firstname }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1">{{ message.sender.firstname }} {{ message.sender.lastname }}</h5>
+                                        <h6 class="text-muted mb-0">{{ message.message|truncatechars:50 }}</h6>
+                                        <small class="text-muted">{{ message.timestamp|date:"F d, Y H:i" }}</small>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="px-4 py-3">
+                                    <p>No recent messages.</p>
+                                </div>
+                                {% endfor %}
+                                <div class="px-4">
+                                    <a href="{% url 'admin_new_chat' %}" class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start Conversation</a>
+                                </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Most Rated Workers</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    {% for worker in top_rated_workers %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar avatar-md me-3">
+                                                {% if worker.worker.image %}
+                                                    <img src="{{ worker.worker.image.url }}" alt="{{ worker.worker.firstname }}'s profile picture">
+                                                {% else %}
+                                                    <img src="{% static 'path/to/default/image.jpg' %}" alt="Default profile picture">
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">{{ worker.worker.firstname }} {{ worker.worker.lastname }}</h6>
+                                                <small class="text-muted">{{ worker.worker.usertype }}</small>
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">
+                                            {{ worker.average_rating|floatformat:1 }} ★
+                                        </span>
+                                    </li>
+                                    {% empty %}
+                                    <li class="list-group-item">No rated workers yet.</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        
+                    </div>
+                    <div class="float-end">
+                        
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'adm_assets/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'adm_assets/vendors/apexcharts/apexcharts.js' %}"></script>
+    <script src="{% static 'adm_assets/js/pages/dashboard.js' %}"></script>
+
+    <script src="{% static 'adm_assets/js/main.js' %}"></script>
+
+    <!-- Add this script tag at the end of the body, just before the closing </body> tag -->
+    <!-- ... existing code ... -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('monthlyBookingsChart').getContext('2d');
+        var chart;
+
+        // Populate year select options
+        var currentYear = new Date().getFullYear();
+        var yearSelect = document.getElementById('yearSelect');
+        for (var i = currentYear; i >= currentYear - 5; i--) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            yearSelect.appendChild(option);
+        }
+
+        function updateChart(year, data) {
+            if (chart) {
+                chart.destroy();
+            }
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: `Monthly Bookings ${year}`,
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {  
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Bookings'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Month'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function fetchDataAndUpdateChart(year) {
+            fetch(`/api/monthly-bookings/${year}/`)
+                .then(response => response.json())
+                .then(data => {
+                    updateChart(year, data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        yearSelect.addEventListener('change', function() {
+            fetchDataAndUpdateChart(this.value);
+        });
+
+        // Initial chart load
+        fetchDataAndUpdateChart(currentYear);
+
+        // District-based bookings chart
+        var districtCtx = document.getElementById('districtBookingsChart').getContext('2d');
+        var districtChart;
+
+        function updateDistrictChart(data) {
+            if (districtChart) {
+                districtChart.destroy();
+            }
+            districtChart = new Chart(districtCtx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.values,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(199, 199, 199, 0.8)',
+                            'rgba(83, 102, 255, 0.8)',
+                            'rgba(40, 159, 64, 0.8)',
+                            'rgba(210, 199, 199, 0.8)',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Bookings by District'
+                        }
+                    }
+                }
+            });
+        }
+
+        function fetchDistrictData() {
+            fetch('/api/district-bookings/')
+                .then(response => response.json())
+                .then(data => {
+                    updateDistrictChart(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching district data:', error);
+                });
+        }
+
+        // Initial load of district chart
+        fetchDistrictData();
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Plumber</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/iconly/bold.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/app.css' %}">
+    <link rel="shortcut icon" href="{% static 'adm_assets/images/favicon.svg' %}" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="#">ServEase</a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DashboardPage -->
+
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="{% url 'dashboard' %}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+<!-- View Users  -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>View Users</span>
+                            </a>
+                            <ul class="submenu ">
+                                <!-- <li class="submenu-item ">
+                                    <a href="{%url 'full_users'%}">All Users</a>
+                                </li> -->
+                                <li class="submenu-item ">
+                                    <a href="{%url 'full_customers'%}">Customers</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{%url 'full_workers'%}">Workers</a>
+                                </li>
+                            </ul>
+                        </li>
+<!-- Booking  -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>View Bookings</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{%url 'new_bookings'%}">New Requests</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Allocated Bookings</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">All Bookings</a>
+                                </li>
+                            </ul>
+                        </li>
+<!-- Manage Customers  -->
+                        <!-- <li class="sidebar-item ">
+                            <a href="{%url 'manage_customers'%}" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Manage Customers</span>
+                            </a>
+                        </li> -->
+<!-- Manage Workers  -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Manage Workers</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_home_nurses' %}">Home Nurse</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_house_maids' %}">House Maid</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_electricians' %}">Electrician</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_plumbers' %}">Plumber</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{% url 'manage_carpenters' %}">Carpenter</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item ">
+                            <a href="{%url 'view_verification'%}" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Verification</span>
+                            </a>
+                        </li>
+                        <!-- Report Generation -->
+                        <li class="sidebar-item ">
+                            <a href="{% url 'report_generation' %}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span>Report Generation</span>
+                            </a>
+                        </li>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Admin Dashboard</h3>
+                            <p class="text-subtitle text-muted">Fill the details below</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add House Maid</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Add New House Maid</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form method="post" class="form" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="first-name-column">First Name</label>
+                                                        <input type="text" id="first-name-column" class="form-control"
+                                                            placeholder="First Name" name="firstname"
+                                                            value="{{ maid.firstname }}" required>
+                                                        <div id="firstname-error" class="error-message text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="last-name-column">Last Name</label>
+                                                        <input type="text" id="last-name-column" class="form-control"
+                                                            placeholder="Last Name" name="lastname"
+                                                            value="{{ maid.lastname }}" required>
+                                                        <div id="lastname-error" class="error-message text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="email-id-column">Email</label>
+                                                        <input type="email" id="email-id-column" class="form-control"
+                                                            placeholder="Email" name="email"
+                                                            value="{{ maid.email }}" required
+                                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                                            title="Please enter a valid email address.">
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid email address.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="phone-column">Phone</label>
+                                                        <input type="text" id="phone-column" class="form-control"
+                                                            placeholder="Phone" name="phone"
+                                                            value="{{ maid.phone }}" required>
+                                                        <div id="phone-error" class="error-message text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="experience-column">Experience</label>
+                                                        <input type="text" id="experience-column" class="form-control"
+                                                            placeholder="Experience" name="experience"
+                                                            value="{{ electrician.experience }}" required>
+                                                        <div id="experience-error" class="error-message text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="availability-column">Availability</label>
+                                                        <select id="availability-column" class="form-control" name="availability" required>
+                                                            <option value="1" {% if electrician.availability %}selected{% endif %}>Available</option>
+                                                            <option value="0" {% if not electrician.availability %}selected{% endif %}>Not Available</option>
+                                                        </select>
+                                                        <div id="availability-error" class="error-message text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="place-column">Place</label>
+                                                        <input type="text" id="place-column" class="form-control"
+                                                            placeholder="Place" name="place"
+                                                            value="{{ maid.place }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="district-column">District</label>
+                                                        <input type="text" id="district-column" class="form-control"
+                                                            placeholder="District" name="district"
+                                                            value="{{ maid.district }}"required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="address-column">Address</label>
+                                                        <textarea id="address-column" class="form-control" name="address"
+                                                            rows="4" placeholder="Address" required>{{ maid.address }}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="profilepic-column">Profile Picture</label>
+                                                        <input type="file" id="profilepic-column" class="form-control"
+                                                            name="profilepic" accept="image/*" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="skill-id-column">Skills</label>
+                                                        <select id="skill-column" class="form-control" name="skill_id" required>
+                                                            {% for skill in skills %}
+                                                                <option value="{{ skill.skill_id }}">{{ skill.skill_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Add</button>
+                                                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2024 &copy; ServEase</p>
+                    </div>
+                    <div class="float-end">
+                        
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'adm_assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'adm_assets/vendors/apexcharts/apexcharts.js' %}"></script>
+    <script src="{% static 'adm_assets/js/pages/dashboard.js' %}"></script>
+    <script src="{% static 'adm_assets/js/main.js' %}"></script>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        document.getElementById('email-id-column').addEventListener('input', function() {
+            var emailField = this;
+            var pattern = new RegExp("^[a-zA-Z]+[a-zA-Z0-9._%+-]*@[a-zA-Z]+\.[a-zA-Z]{2,}$");
+            if (emailField.value !== "" && !pattern.test(emailField.value)) {
+                emailField.setCustomValidity("Please enter a valid email address. The domain should contain only letters before the dot (.) and a valid top-level domain.");
+            } else {
+                emailField.setCustomValidity("");
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const firstNameInput = document.getElementById('first-name-column');
+            const lastNameInput = document.getElementById('last-name-column');
+            const phoneInput = document.getElementById('phone-column');
+            const experienceInput = document.getElementById('experience-column');
+
+            const firstNameError = document.getElementById('firstname-error');
+            const lastNameError = document.getElementById('lastname-error');
+            const phoneError = document.getElementById('phone-error');
+            const experienceError = document.getElementById('experience-error');
+
+            firstNameInput.addEventListener('input', function () {
+                const value = firstNameInput.value.trim();
+                if (/^[A-Za-z\s]+$/.test(value)) {
+                    firstNameError.textContent = '';
+                } else {
+                    firstNameError.textContent = 'Invalid first name (name should only contain letters)';
+                }
+            });
+
+            lastNameInput.addEventListener('input', function () {
+                const value = lastNameInput.value.trim();
+                if (/^[A-Za-z\s]+$/.test(value)) {
+                    lastNameError.textContent = '';
+                } else {
+                    lastNameError.textContent = 'Invalid last name (name should only contain letters)';
+                }
+            });
+
+            phoneInput.addEventListener('input', function () {
+                const value = phoneInput.value.trim();
+                if (/^\d{10}$/.test(value)) {
+                    phoneError.textContent = '';
+                } else {
+                    phoneError.textContent = 'Phone number must be 10 digits';
+                }
+            });
+
+            experienceInput.addEventListener('input', function () {
+                const value = parseInt(experienceInput.value.trim(), 10);
+                if (value >= 1 && value <= 35) {
+                    experienceError.textContent = '';
+                } else {
+                    experienceError.textContent = 'Experience must be between 1 and 35 years';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

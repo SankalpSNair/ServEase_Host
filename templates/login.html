@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In</title>
+
+    <!-- Font Icon -->
+    <!-- <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(45deg, #6b5ce7, #a178df);
+            --secondary-gradient: linear-gradient(45deg, #ff7979, #ffbe76);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--primary-gradient);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .sign-in {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .container {
+            display: flex;
+            background: transparent;
+            margin: 0 20px;
+        }
+
+        .signin-content {
+            display: flex;
+            width: 100%;
+            background: transparent;
+        }
+
+        .welcome-section {
+            flex: 1;
+            padding: 60px;
+            color: white;
+            position: relative;
+        }
+
+        .signin-form {
+            flex: 1;
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background: #f8f9fa;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6b5ce7;
+            background: white;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: var(--button-gradient);
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-submit:hover {
+            background: rgba(77, 62, 207, 0.521);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 191, 207, 0.3);
+        }
+
+        .form-submit:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 65, 106, 0.3);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin: 15px 0;
+        }
+
+        .forgot-password a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-label {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .socials a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .socials a:hover {
+            background: var(--primary-gradient);
+            color: rgb(17, 16, 16);
+        }
+
+        .signin-image {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                display: none;
+            }
+            .signin-form {
+                width: 100%;
+            }
+            .container {
+                margin: 20px;
+            }
+        }
+
+        /* Add these new styles */
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .register-button {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: rgb(0, 0, 0);
+            padding: 5px 30px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .register-button:hover {
+            background: rgba(77, 62, 207, 0.521);
+            border-color: rgb(255, 255, 255);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="welcome-section">
+                        <h2>Welcome to ServEase</h2>
+                        <p>Your one-stop solution for seamless service management. Log in to access your account.</p>
+                    </div>
+                    
+                    <div class="signin-form">
+                        <h2 class="form-title">LOGIN</h2>
+                        <form method="POST" class="register-form" id="login-form" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="email" name="username" id="username" placeholder="Username / Email"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" placeholder="Password"/>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="{% url 'custom_password_reset' %}">Forgot Password?</a>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="LOGIN"/>
+                            </div>
+                        </form>
+                        <!-- <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="{% url 'social:begin' 'google-oauth2' %}"><i class="zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div> -->
+                        <div class="register-link">
+                            <a href="{% url 'signup' %}" class="register-button">Create New Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% if messages %}
+            {% for message in messages %}
+                Swal.fire({
+                    icon: "{{ message.tags|default:'info' }}",
+                    title: "{{ message|escapejs }}",
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            {% endfor %}
+        {% endif %}
+    </script>
+</body>
+</html>

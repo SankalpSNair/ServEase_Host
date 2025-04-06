@@ -1,0 +1,17 @@
+<form action="{% url 'verify_payment' payment_id=payment.payment_id %}" method="POST" id="razorpay-form">
+    {% csrf_token %}
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="{{ razorpay_key }}"
+        data-amount="{{ amount|floatformat:2 }}"
+        data-currency="INR"
+        data-order_id="{{ order_id }}"
+        data-buttontext="Pay with Razorpay"
+        data-name="ServEase"
+        data-description="Booking Description"
+        data-image="/your_logo_url"
+        data-prefill.name="{{ request.user.username }}"
+        data-prefill.email="{{ request.user.email }}"
+        data-theme.color="#F37254"
+    ></script>
+</form>

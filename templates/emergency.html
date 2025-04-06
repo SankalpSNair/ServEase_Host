@@ -1,0 +1,754 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+    <style>
+        .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+      
+        .blog-post-thumb {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .blog-post-thumb .blog-content {
+            padding: 15px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        .blog-post-thumb .img img {
+            width: 65%;
+            height: auto;
+            display: inline;
+        
+        }
+        html, body {
+            overflow: hidden;
+        }
+        /* Update features-small-item style */
+        .features-small-item {
+            cursor: pointer;
+            background: #FFFFFF;
+            box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.10);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+            position: relative;
+            margin-bottom: 30px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .features-small-item:hover {
+            margin-top: -10px;
+        }
+
+        .features-title {
+            font-weight: 500;
+            font-size: 18px;
+            color: #1e1e1e;
+            letter-spacing: 0.7px;
+            margin-bottom: 15px;
+        }
+
+        .features-small-item p {
+            font-weight: 400;
+            font-size: 14px;
+            color: #777;
+            letter-spacing: 0.5px;
+            line-height: 25px;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        select.location-input {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            padding-right: 40px;
+        }
+
+        select.location-input optgroup {
+            font-weight: bold;
+            color: #666;
+        }
+
+        select.location-input option {
+            padding: 8px;
+            color: #333;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+    </head>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+
+                                <li><a href="{% url 'home' %}" class="active" style="font-size: 18px;">Home</a></li>
+                                <li><a href="#features" style="font-size: 18px;">About</a></li>
+                                <li><a href="{%url 'services'%}" style="font-size: 18px;">Services</a></li>
+                                <li><a href="{% url 'emergency' %}" style="font-size: 18px;">Emergency</a></li>
+                                <li><a href="{% url 'view_bookings' %}" style="font-size: 18px;">Bookings</a></li>
+                                <li><a href="{% url 'logout' %}" style="font-size: 18px;">Log Out</a></li>
+                                <!-- <li><a href="#" style="font-size: 15px;">Hey,Sankalp</a></li> -->
+                                
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- ***** Blog Start ***** -->
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- ***** Features Small Start ***** -->
+    <section id="services" class="section home-feature">
+        <div class="center-heading">
+            <h2>Emergency Services</h2><br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- Plumbing Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">Plumbing Emergency</h5>
+                                    <p>24/7 emergency plumbing services including burst pipes, severe leaks, blocked drains, and sewage issues</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('Plumbing Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Electrical Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">Electrical Emergency</h5>
+                                    <p>Immediate response for power outages, short circuits, electrical fires, and wiring emergencies</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('Electrical Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Medical Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">Medical Emergency</h5>
+                                    <p>24/7 home medical assistance, emergency nursing care, and immediate medical support</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('Medical Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Locksmith Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">Locksmith Emergency</h5>
+                                    <p>24/7 emergency lockout services, lock repairs, and security system emergencies</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('Locksmith Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pest Control Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">Pest Emergency</h5>
+                                    <p>Urgent pest control for dangerous infestations, bee/wasp nests, and rodent emergencies</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('Pest Control Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HVAC Emergency -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="content">
+                                    <h5 class="features-title">HVAC Emergency</h5>
+                                    <p>24/7 emergency heating and cooling repairs, gas leak response, and system failures</p>
+                                </div>
+                                <div class="button-container">
+                                    <a href="javascript:void(0)" class="main-button" 
+                                       onclick="showBookingModal('HVAC Emergency', '918848907045')">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <!-- For profile -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var profileLink = document.getElementById("profile-link");
+    var profilePopup = document.getElementById("profile-popup");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    profileLink.onclick = function() {
+        profilePopup.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+        profilePopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == profilePopup) {
+            profilePopup.style.display = "none";
+        }
+    }
+    });
+    </script>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Emergency Service Booking</h3>
+            <form id="emergencyBookingForm">
+                <input type="hidden" id="serviceType" name="serviceType">
+                <input type="hidden" id="workerPhone" name="workerPhone">
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+                <div class="form-group">
+                    <input type="text" id="locationInput" class="location-input" placeholder="Enter your location" required>
+                    <a href="javascript:void(0)" class="use-current-location" onclick="getCurrentLocation()">
+                        Use Current Location
+                    </a>
+                </div>
+                <div class="form-group">
+                    <select id="additionalDetails" class="location-input" required>
+                        <option value="">Select Emergency Type</option>
+                        <!-- Plumbing Options -->
+                        <optgroup label="Plumbing">
+                            <option value="Burst pipe">Burst pipe</option>
+                            <option value="Severe water leak">Severe water leak</option>
+                            <option value="Blocked drain">Blocked drain</option>
+                            <option value="Sewage backup">Sewage backup</option>
+                        </optgroup>
+                        <!-- Electrical Options -->
+                        <optgroup label="Electrical">
+                            <option value="Power outage">Power outage</option>
+                            <option value="Short circuit">Short circuit</option>
+                            <option value="Electrical fire risk">Electrical fire risk</option>
+                            <option value="Exposed wiring">Exposed wiring</option>
+                        </optgroup>
+                        <!-- Medical Options -->
+                        <optgroup label="Medical">
+                            <option value="Immediate medical assistance">Immediate medical assistance</option>
+                            <option value="Emergency nursing care">Emergency nursing care</option>
+                            <option value="Medical equipment failure">Medical equipment failure</option>
+                        </optgroup>
+                        <!-- Locksmith Options -->
+                        <optgroup label="Locksmith">
+                            <option value="Locked out">Locked out</option>
+                            <option value="Broken lock">Broken lock</option>
+                            <option value="Security system failure">Security system failure</option>
+                        </optgroup>
+                        <!-- Pest Control Options -->
+                        <optgroup label="Pest Control">
+                            <option value="Dangerous infestation">Dangerous infestation</option>
+                            <option value="Bee/Wasp nest">Bee/Wasp nest</option>
+                            <option value="Rodent emergency">Rodent emergency</option>
+                        </optgroup>
+                        <!-- HVAC Options -->
+                        <optgroup label="HVAC">
+                            <option value="No heating/cooling">No heating/cooling</option>
+                            <option value="Gas leak">Gas leak</option>
+                            <option value="System failure">System failure</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button type="submit" class="book-now-btn">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add all required scripts -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Define emergency options for each service type
+        const emergencyOptions = {
+            'Plumbing Emergency': {
+                label: 'Plumbing',
+                options: [
+                    'Burst pipe',
+                    'Severe water leak',
+                    'Blocked drain',
+                    'Sewage backup',
+                    'Other'
+                ]
+            },
+            'Electrical Emergency': {
+                label: 'Electrical',
+                options: [
+                    'Power outage',
+                    'Short circuit',
+                    'Electrical fire risk',
+                    'Exposed wiring',
+                    'Other'
+                ]
+            },
+            'Medical Emergency': {
+                label: 'Medical',
+                options: [
+                    'Immediate medical assistance',
+                    'Emergency nursing care',
+                    'Medical equipment failure',
+                    'Other'
+                ]
+            },
+            'Locksmith Emergency': {
+                label: 'Locksmith',
+                options: [
+                    'Locked out',
+                    'Broken lock',
+                    'Security system failure',
+                    'Other'
+                ]
+            },
+            'Pest Control Emergency': {
+                label: 'Pest Control',
+                options: [
+                    'Dangerous infestation',
+                    'Bee/Wasp nest',
+                    'Rodent emergency',
+                    'Other'
+                ]
+            },
+            'HVAC Emergency': {
+                label: 'HVAC',
+                options: [
+                    'No heating/cooling',
+                    'Gas leak',
+                    'System failure',
+                    'Other'
+                ]
+            }
+        };
+
+        // Show modal function with dynamic options
+        window.showBookingModal = function(serviceType, workerPhone) {
+            var modal = document.getElementById("bookingModal");
+            document.getElementById("serviceType").value = serviceType;
+            document.getElementById("workerPhone").value = workerPhone;
+            
+            // Update dropdown options based on service type
+            const dropdown = document.getElementById("additionalDetails");
+            const options = emergencyOptions[serviceType];
+            
+            // Clear existing options
+            dropdown.innerHTML = '';
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = `Select ${options.label} Emergency Type`;
+            dropdown.appendChild(defaultOption);
+            
+            // Add service-specific options
+            options.options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                dropdown.appendChild(optionElement);
+            });
+            
+            modal.style.display = "flex";
+        };
+
+        // Close modal when clicking the close button
+        var closeBtn = document.querySelector(".close-modal");
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                document.getElementById("bookingModal").style.display = "none";
+            };
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            var modal = document.getElementById("bookingModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        // Updated getCurrentLocation function
+        window.getCurrentLocation = function() {
+            var locationButton = document.querySelector('.use-current-location');
+            var locationInput = document.getElementById('locationInput');
+            var latitudeInput = document.getElementById('latitude');
+            var longitudeInput = document.getElementById('longitude');
+            
+            // Show loading state
+            locationButton.disabled = true;
+            locationButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Getting location...';
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // Get coordinates
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+
+                        // Store coordinates in hidden inputs
+                        latitudeInput.value = latitude;
+                        longitudeInput.value = longitude;
+                        
+                        // Display coordinates in the location input
+                        locationInput.value = `${latitude}, ${longitude}`;
+                        console.log("Location found:", latitude, longitude);
+
+                        // Reset button state
+                        locationButton.disabled = false;
+                        locationButton.innerHTML = '<i class="fa fa-map-marker"></i> Use Current Location';
+                    },
+                    function(error) {
+                        // Reset button state
+                        locationButton.disabled = false;
+                        locationButton.innerHTML = '<i class="fa fa-map-marker"></i> Use Current Location';
+                        
+                        // Handle specific errors
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                alert("Please allow location access in your browser settings to use this feature.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                alert("Unable to detect your location. Please try again or enter manually.");
+                                break;
+                            case error.TIMEOUT:
+                                alert("Location request timed out. Please try again.");
+                                break;
+                            default:
+                                alert("An error occurred while getting your location. Please try again.");
+                                break;
+                        }
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                alert("Location detection is not supported by your browser. Please enter your location manually.");
+                locationButton.disabled = false;
+                locationButton.innerHTML = '<i class="fa fa-map-marker"></i> Use Current Location';
+            }
+        };
+
+        // Handle form submission
+        var form = document.getElementById("emergencyBookingForm");
+        if (form) {
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                
+                var serviceType = document.getElementById("serviceType").value;
+                var workerPhone = document.getElementById("workerPhone").value;
+                var latitude = document.getElementById("latitude").value;
+                var longitude = document.getElementById("longitude").value;
+                var details = document.getElementById("additionalDetails").value;
+
+                // Format the WhatsApp message
+                var message = `Emergency Service Request:\n` +
+                             `Service: ${serviceType}\n` +
+                             `Location: ${latitude}, ${longitude}\n` +
+                             `Details: ${details}`;
+
+                // Create WhatsApp URL
+                var whatsappURL = `https://wa.me/${workerPhone}?text=${encodeURIComponent(message)}`;
+                
+                // Open WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Close the modal
+                document.getElementById("bookingModal").style.display = "none";
+                
+                // Reset form
+                form.reset();
+            };
+        }
+    });
+    </script>
+
+    <style>
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .location-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .use-current-location {
+            color: #9064E9;
+            text-decoration: underline;
+            cursor: pointer;
+            display: block;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .book-now-btn {
+            background: #9064E9;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .book-now-btn:hover {
+            background: #7d4fd6;
+        }
+    </style>
+
+  </body>
+</html>

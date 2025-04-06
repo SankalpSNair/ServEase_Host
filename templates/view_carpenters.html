@@ -1,0 +1,605 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+    <style>
+        .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+      
+        .blog-post-thumb {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .blog-post-thumb .blog-content {
+            padding: 15px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        .blog-post-thumb .img img {
+            width: 65%;
+            height: auto;
+            display: inline;
+        }
+
+        /* Search bar styles */
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 50%;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #9064E9;
+            border-radius: 25px;
+            background-color: white;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #7040C0;
+            box-shadow: 0 0 0 2px rgba(112, 64, 192, 0.2);
+        }
+
+        .select-wrapper::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 14px;
+            color: #9064E9;
+            transition: all 0.3s ease;
+        }
+
+        .select-wrapper:hover::after {
+            color: #7040C0;
+        }
+
+        .search-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #9064E9;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #7040C0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .select-wrapper {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .search-button {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+        .section{
+            margin-top: -50px;
+        }
+        
+        .voice-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #9064E9;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .voice-button.listening {
+            background-color: #dc3545 !important;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .voice-button {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+    </head>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+
+                            <li><a href="{% url 'home' %}" class="active" style="font-size: 15px;">Home</a></li>
+                            <li><a href="#features" style="font-size: 15px;">About</a></li>
+                            <li><a href="{%url 'services'%}" style="font-size: 15px;">Services</a></li>
+                            <li><a href="{% url 'emergency' %}" style="font-size: 15px;">Emergency</a></li>
+                            <!-- <li><a href="#" style="font-size: 15px;">Blog Entries</a></li> -->
+                            <li><a href="#" style="font-size: 15px;">Contact Us</a></li>
+                            <li><a href="{% url 'view_bookings' %}" style="font-size: 15px;">Bookings</a></li>
+                            <li><a href="{% url 'logout' %}" style="font-size: 15px;">Log Out</a></li>
+                                
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- ***** Blog Start ***** -->
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Carpenters</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>Our Employees provides the best Services to You</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ***** Section Title End ***** -->
+
+            <!-- Add search bar -->
+            <div class="search-container">
+                <form action="" method="get">
+                    <div class="select-wrapper">
+                        <select class="search-bar" name="district" id="district">
+                            <option value="">All Districts</option>
+                            {% for district in districts %}
+                                <option value="{{ district }}" {% if selected_district == district %}selected{% endif %}>{{ district }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="date" id="available_date" name="available_date" value="{{ selected_date }}" style="padding: 12px 20px; font-size: 16px; border: 2px solid #9064E9; border-radius: 25px; margin: 0 10px;">
+                    <button type="submit" class="search-button">Search</button>
+                    <button type="button" class="voice-button" id="voiceSearchButton">
+                        <i class="fa fa-microphone"></i>
+                        Voice Search
+                    </button>
+                </form>
+                <div id="voiceStatus" style="text-align: center; margin-top: 10px; color: #666; font-size: 16px;"></div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% for carpenter in carpenters %}
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="blog-post-thumb">
+            <div class="img">
+                {% if carpenter.user_id.image %}
+                    <img src="{{ carpenter.user_id.image.url }}" alt="{{ carpenter.firstname }} {{ carpenter.lastname }}">
+                {% else %}
+                    <img src="/path/to/default/image.jpg" alt="Default Image">
+                {% endif %}
+            </div>
+            <div class="blog-content">
+                <h3>{{ carpenter.firstname }} {{ carpenter.lastname }}</h3>
+                <div class="text">
+                    <!-- <p>Address: {{ carpenter.address }}</p> -->
+                    <p>Experience: {{carpenter.experience}} Year/Years</p>
+                    <!-- <p>Phone: {{ carpenter.phone }}</p> -->
+                    <p>Place: {{ carpenter.place }}</p>
+                    <p>District: {{ carpenter.district }}</p>
+                </div>
+                <a href="{% url 'book_carpenter' carpenter.carpenter_id %}" class="main-button">Book Service</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ***** Blog End ***** -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js5' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <!-- For profile -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+    var profileLink = document.getElementById("profile-link");
+    var profilePopup = document.getElementById("profile-popup");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    profileLink.onclick = function() {
+        profilePopup.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+        profilePopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == profilePopup) {
+            profilePopup.style.display = "none";
+        }
+    }
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dateInput = document.getElementById('available_date');
+        
+        // Set min date to today
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        dateInput.min = today;
+        
+        // Set max date to one year from today
+        var maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() + 1);
+        var dd = String(maxDate.getDate()).padStart(2, '0');
+        var mm = String(maxDate.getMonth() + 1).padStart(2, '0');
+        var yyyy = maxDate.getFullYear();
+        maxDate = yyyy + '-' + mm + '-' + dd;
+        dateInput.max = maxDate;
+
+        // Set default value to today if not already set
+        if (!dateInput.value) {
+            dateInput.value = today;
+        }
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const voiceSearchButton = document.getElementById('voiceSearchButton');
+        const districtSelect = document.getElementById('district');
+        const dateInput = document.getElementById('available_date');
+        const searchForm = document.querySelector('form');
+        const voiceStatus = document.getElementById('voiceStatus');
+        let recognition;
+        let speechSynthesis = window.speechSynthesis;
+        let speaking = false;
+
+        // Function to read search results
+        function readSearchResults(fromVoiceSearch = false) {
+            console.log("Reading results, fromVoiceSearch:", fromVoiceSearch);
+            
+            if (speaking) {
+                speechSynthesis.cancel();
+                speaking = false;
+            }
+
+            const results = document.querySelectorAll('.col-lg-4');
+            console.log("Found results:", results.length);
+            
+            if (results.length === 0) {
+                const noResults = new SpeechSynthesisUtterance("No results found for your search.");
+                speechSynthesis.speak(noResults);
+                return;
+            }
+
+            // Create introduction message
+            const intro = new SpeechSynthesisUtterance(`Found ${results.length} results for your search.`);
+            speechSynthesis.speak(intro);
+
+            // Read each result
+            results.forEach((result, index) => {
+                const name = result.querySelector('h3')?.textContent || '';
+                const details = result.querySelector('.text')?.textContent || '';
+                
+                const text = `Result ${index + 1}: ${name}. ${details}`;
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                speaking = true;
+                speechSynthesis.speak(utterance);
+            });
+        }
+
+        // Set min and max dates
+        const today = new Date();
+        const maxDate = new Date(today);
+        maxDate.setFullYear(today.getFullYear() + 1);
+        
+        dateInput.min = today.toISOString().split('T')[0];
+        dateInput.max = maxDate.toISOString().split('T')[0];
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                voiceSearchButton.classList.add('listening');
+                voiceSearchButton.innerHTML = '<i class="fa fa-microphone"></i> Listening...';
+                voiceStatus.textContent = "Please speak the district name followed by date, month and year (e.g., 'Ernakulam 20 March 2025')";
+            };
+
+            recognition.onresult = function(event) {
+                const result = event.results[0][0].transcript.toLowerCase().trim();
+                console.log('Voice input:', result);
+
+                // Get all available districts
+                const districts = Array.from(districtSelect.options)
+                    .filter(option => option.value)
+                    .map(option => ({
+                        text: option.textContent.toLowerCase(),
+                        value: option.value
+                    }));
+
+                // Find district in the spoken text
+                const foundDistrict = districts.find(district => 
+                    result.includes(district.text.toLowerCase())
+                );
+
+                if (!foundDistrict) {
+                    voiceStatus.textContent = "District not found in your speech. Please try again.";
+                    return;
+                }
+
+                // Set the district
+                districtSelect.value = foundDistrict.value;
+                
+                // Find date (1-31)
+                const dateMatch = result.match(/\b(\d{1,2})(st|nd|rd|th)?\b/);
+                const date = dateMatch ? parseInt(dateMatch[1]) : null;
+                
+                if (!date || date < 1 || date > 31) {
+                    voiceStatus.textContent = "Could not find a valid date (1-31) in your speech. Please try again.";
+                    return;
+                }
+
+                // Find month
+                const months = {
+                    january: 1, jan: 1,
+                    february: 2, feb: 2,
+                    march: 3, mar: 3,
+                    april: 4, apr: 4,
+                    may: 5,
+                    june: 6, jun: 6,
+                    july: 7, jul: 7,
+                    august: 8, aug: 8,
+                    september: 9, sep: 9,
+                    october: 10, oct: 10,
+                    november: 11, nov: 11,
+                    december: 12, dec: 12
+                };
+
+                const monthName = Object.keys(months).find(m => result.includes(m));
+                if (!monthName) {
+                    voiceStatus.textContent = "Could not find a valid month name in your speech. Please try again.";
+                    return;
+                }
+                const month = months[monthName];
+
+                // Find year (current year or next year only)
+                const yearMatch = result.match(/\b(20[2-3][0-9])\b/);
+                const year = yearMatch ? parseInt(yearMatch[1]) : null;
+                
+                // Create date object for validation
+                const inputDate = new Date(year, month - 1, date);
+                const todayDate = new Date();
+                todayDate.setHours(0, 0, 0, 0);
+                
+                if (inputDate < todayDate) {
+                    voiceStatus.textContent = "Please specify a date from today onwards.";
+                    return;
+                }
+                
+                if (inputDate > maxDate) {
+                    voiceStatus.textContent = "Please specify a date within one year from today.";
+                    return;
+                }
+
+                // Format the date as YYYY-MM-DD
+                const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                dateInput.value = formattedDate;
+
+                // Show success message
+                voiceStatus.textContent = `Searching for ${foundDistrict.text} on ${date} ${monthName} ${year}...`;
+                
+                // Set a flag in localStorage (more reliable than sessionStorage for form submissions)
+                localStorage.setItem('fromVoiceSearch', 'true');
+                
+                // Submit the form
+                searchForm.submit();
+            };
+
+            recognition.onend = function() {
+                voiceSearchButton.classList.remove('listening');
+                voiceSearchButton.innerHTML = '<i class="fa fa-microphone"></i> Voice Search';
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                voiceStatus.textContent = "There was an error. Please try again.";
+                voiceSearchButton.classList.remove('listening');
+                voiceSearchButton.innerHTML = '<i class="fa fa-microphone"></i> Voice Search';
+            };
+
+            voiceSearchButton.addEventListener('click', function() {
+                recognition.start();
+            });
+        } else {
+            voiceSearchButton.style.display = 'none';
+            voiceStatus.textContent = 'Speech recognition is not supported in your browser.';
+        }
+
+        // Add event listener for when search results are loaded
+        window.addEventListener('load', function() {
+            console.log("Page loaded, checking for voice search...");
+            // Check if there are search parameters in the URL
+            if (window.location.search) {
+                const fromVoiceSearch = localStorage.getItem('fromVoiceSearch') === 'true';
+                console.log("fromVoiceSearch:", fromVoiceSearch);
+                
+                // Wait a short moment for results to render
+                setTimeout(() => {
+                    readSearchResults(true); // Always read for voice search
+                    // Clear the flag after reading
+                    localStorage.removeItem('fromVoiceSearch');
+                }, 1000);
+            }
+        });
+
+        // Add keyboard shortcut to stop speech
+        document.addEventListener('keydown', function(e) {
+            // Press Escape to stop speech
+            if (e.key === 'Escape' && speaking) {
+                speechSynthesis.cancel();
+                speaking = false;
+            }
+        });
+    });
+    </script>
+
+  </body>
+</html>

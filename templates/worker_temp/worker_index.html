@@ -1,0 +1,353 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Worker</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'work_assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'work_assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'work_assets/css/main.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'worker_index' %}" class="logo d-flex align-items-center me-auto">
+        <!-- <img src="{% static 'work_assets/img/logo.png' %}" alt=""> -->
+        <h1 class="sitename">ServEase</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'worker_index' %}#hero" class="active">Home</a></li>
+          <li><a href="{% url 'worker_index' %}#about">About</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li class="dropdown">
+            <a href="#" class="notification-link">
+              <i class="bi bi-bell"></i> Notifications
+              {% if pending_bookings_count > 0 %}
+              <span class="badge bg-danger rounded-pill">{{ pending_bookings_count }}</span>
+              {% endif %}
+            </a>
+            <ul class="dropdown-menu notification-dropdown">
+              {% if pending_bookings %}
+                {% for booking in pending_bookings %}
+                  <li class="notification-item">
+                    <div class="notification-content">
+                      <p><strong>New booking request!</strong></p>
+                      <p>Date: {{ booking.appointment_date }}</p>
+                      <p>Time: {{ booking.appointment_time }}</p>
+                      <p>Service: {{ booking.service_type }}</p>
+                      <div class="notification-actions">
+                        <button class="btn btn-sm btn-success accept-booking" data-booking-id="{{ booking.id }}">Accept</button>
+                        <button class="btn btn-sm btn-danger reject-booking" data-booking-id="{{ booking.id }}">Reject</button>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% else %}
+                <li class="notification-item">
+                  <div class="notification-content">
+                    <p>No new booking requests</p>
+                  </div>
+                </li>
+              {% endif %}
+              <li class="dropdown-divider"></li>
+              <li class="notification-footer">
+                <a href="{% url 'view_my_booking' %}">View all bookings</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="{% url 'view_my_booking' %}">Bookings</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'worker_verification' %}">Verification</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'worker_profile' %}">Profile</a>
+
+    </div>
+  </header>
+
+  <main class="main" style="height: 100%; margin: 0; padding: 0;">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        background-image: url('{% static "work_assets/img/hero-bg-light.webp" %}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding-top: 80px; /* Adjust this value based on your header height */
+      }
+      
+      /* Notification dropdown styles */
+      .dropdown {
+        position: relative;
+      }
+      
+      .notification-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      
+      .badge {
+        margin-left: 5px;
+      }
+      
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 300px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        z-index: 1000;
+        border-radius: 8px;
+        padding: 0;
+        right: 0;
+        left: auto;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      
+      .notification-item {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      
+      .notification-content {
+        font-size: 14px;
+      }
+      
+      .notification-content p {
+        margin: 5px 0;
+      }
+      
+      .notification-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      
+      .notification-footer {
+        padding: 10px 15px;
+        text-align: center;
+      }
+      
+      .dropdown-divider {
+        height: 1px;
+        background-color: #f1f1f1;
+        margin: 0;
+      }
+    </style>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="hero-bg">
+        <img src="{% static 'work_assets/img/hero-bg-light.webp' %}" alt="">
+      </div>
+      <div class="container text-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h1 data-aos="fade-up">Welcome to <span>ServEase</span></h1>
+          <p data-aos="fade-up" data-aos-delay="100"><br></p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="#about" class="btn-get-started">Get Started</a>
+          </div>
+          <img src="{% static 'work_assets/img/hero-services-img.webp' %}" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+
+    </section>
+    <!-- /Hero Section -->
+
+   
+    
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p class="who-we-are">Why Choose ServEase</p>
+            <h3>Empowering Service Professionals</h3>
+            <p class="fst-italic">
+              ServEase connects skilled workers with clients, providing a platform to showcase your expertise and grow your business.
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span>Flexible scheduling - work when it suits you best</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Expand your client base with our wide network of customers</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Secure and timely payments through our trusted platform</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Build your reputation with our rating and review system</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Access to professional development resources and support</span></li>
+            </ul>
+            <a href="{% url 'worker_profile' %}" class="read-more"><span>Manage Your Profile</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+
+          <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+              <div class="col-lg-6">
+                <img src="{% static 'work_assets/img/about-company-1.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6">
+                <div class="row gy-4">
+                  <div class="col-lg-12">
+                    <img src="{% static 'work_assets/img/about-company-2.jpg' %}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-lg-12">
+                    <img src="{% static 'work_assets/img/about-company-3.jpg' %}" class="img-fluid" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">ServEase</strong><span>All Rights Reserved</span></p>
+      <div class="credits">
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'work_assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'work_assets/js/main.js' %}"></script>
+  
+  <script>
+    // Booking acceptance/rejection functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle booking acceptance
+      document.querySelectorAll('.accept-booking').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const bookingId = this.getAttribute('data-booking-id');
+          updateBookingStatus(bookingId, 'Confirmed');
+        });
+      });
+      
+      // Handle booking rejection
+      document.querySelectorAll('.reject-booking').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const bookingId = this.getAttribute('data-booking-id');
+          updateBookingStatus(bookingId, 'Cancelled');
+        });
+      });
+      
+      // Function to update booking status
+      function updateBookingStatus(bookingId, status) {
+        fetch("{% url 'update_worker_booking_status' %}", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+          },
+          body: JSON.stringify({ 
+            booking_id: bookingId, 
+            status: status 
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Remove the notification item from the dropdown
+            const notificationItem = document.querySelector(`.notification-item button[data-booking-id="${bookingId}"]`).closest('.notification-item');
+            notificationItem.remove();
+            
+            // Update the notification count
+            const badge = document.querySelector('.notification-link .badge');
+            if (badge) {
+              const count = parseInt(badge.textContent) - 1;
+              if (count > 0) {
+                badge.textContent = count;
+              } else {
+                badge.remove();
+                // If no more notifications, show the 'no notifications' message
+                const dropdown = document.querySelector('.notification-dropdown');
+                if (dropdown.querySelectorAll('.notification-item').length === 0) {
+                  const emptyNotification = document.createElement('li');
+                  emptyNotification.className = 'notification-item';
+                  emptyNotification.innerHTML = '<div class="notification-content"><p>No new booking requests</p></div>';
+                  dropdown.insertBefore(emptyNotification, dropdown.querySelector('.dropdown-divider'));
+                }
+              }
+            }
+            
+            // Show success message
+            alert(`Booking ${status.toLowerCase()} successfully!`);
+          } else {
+            alert('Failed to update booking status: ' + data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while updating the booking status.');
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

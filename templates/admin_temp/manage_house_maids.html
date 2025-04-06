@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/iconly/bold.css'%}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'adm_assets/css/app.css' %}">
+    <link rel="shortcut icon" href="{% static 'adm_assets/images/favicon.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        /* DataTable styling */
+        #table1_wrapper {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #table1 {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        #table1 th, #table1 td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+        }
+        #table1 thead th {
+            background-color: #4e73df;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        #table1 tbody tr:nth-of-type(even) {
+            background-color: #f1f3f9;
+        }
+        #table1 tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        .dataTables_paginate .paginate_button {
+            padding: 6px 12px;
+            margin-left: 5px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            color: #4e73df;
+        }
+        .dataTables_paginate .paginate_button.current {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        /* Custom search box styling */
+        .dataTables_filter {
+            margin-bottom: 20px;
+        }
+        .dataTables_filter label {
+            font-weight: bold;
+            color: #4e73df;
+        }
+        .dataTables_filter input {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 6px 12px;
+            margin-left: 8px;
+            width: 200px;
+        }
+        .dataTables_filter input:focus {
+            outline: none;
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78,115,223,0.25);
+        }
+
+        /* Add this to hide the table initially */
+        .table-loading {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="#">ServEase</a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+<!-- DashboardPage -->
+
+<div class="sidebar-menu">
+    <ul class="menu">
+        <li class="sidebar-title">Menu</li>
+
+        <li class="sidebar-item active ">
+            <a href="{% url 'dashboard' %}" class='sidebar-link'>
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+<!-- View Users  -->
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>View Users</span>
+            </a>
+            <ul class="submenu ">
+                <!-- <li class="submenu-item ">
+                    <a href="{%url 'full_users'%}">All Users</a>
+                </li> -->
+                <li class="submenu-item ">
+                    <a href="{%url 'full_customers'%}">Customers</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="{%url 'full_workers'%}">Workers</a>
+                </li>
+            </ul>
+        </li>
+<!-- Booking  -->
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-collection-fill"></i>
+                <span>View Bookings</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item ">
+                    <a href="{%url 'new_bookings'%}">New Requests</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="#">Allocated Bookings</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="#">All Bookings</a>
+                </li>
+            </ul>
+        </li>
+<!-- Manage Customers  -->
+        <!-- <li class="sidebar-item ">
+            <a href="{%url 'manage_customers'%}" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>Manage Customers</span>
+            </a>
+        </li> -->
+<!-- Manage Workers  -->
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>Manage Workers</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item ">
+                    <a href="{% url 'manage_home_nurses' %}">Home Nurse</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="{% url 'manage_house_maids' %}">House Maid</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="{% url 'manage_electricians' %}">Electrician</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="{% url 'manage_plumbers' %}">Plumber</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="{% url 'manage_carpenters' %}">Carpenter</a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-item ">
+            <a href="{%url 'view_verification'%}" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>Verification</span>
+            </a>
+        </li>
+        <!-- Report Generation -->
+        <li class="sidebar-item ">
+            <a href="{% url 'report_generation' %}" class='sidebar-link'>
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Report Generation</span>
+            </a>
+        </li>
+</div>
+<button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+</div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>House Maids</h3>
+                            <p class="text-subtitle text-muted">Listing the basic details</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Manage House Maids
+                            <a href="{%url 'add_house_maid'%}" class="btn btn-outline-primary float-start float-lg-end">
+                                Add House Maid
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <!-- Add the table-loading class -->
+                            <table class="table table-striped table-loading" id="table1" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Experience</th>
+                                        <th>Availability</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for maid in maids %}
+                                    <tr>
+                                        <td>{{ maid.firstname }} {{ maid.lastname }}</td>
+                                        <td>{{ maid.email }}</td>
+                                        <td>{{ maid.phone }}</td>
+                                        <td>{{ maid.experience }}</td>
+                                        <td>
+                                            {% if maid.availability %}
+                                                <span class="badge bg-success">Available</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Not Available</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'edit_house_maid' maid.maid_id %}" class="btn btn-primary btn-sm">Edit</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">No house maids found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        
+                    </div>
+                    <div class="float-end">
+                        
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Move scripts to the end of the body and use defer -->
+    <script src="{% static 'adm_assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}" defer></script>
+    <script src="{% static 'adm_assets/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'adm_assets/vendors/apexcharts/apexcharts.js' %}" defer></script>
+    <script src="{% static 'adm_assets/js/pages/dashboard.js' %}" defer></script>
+    <script src="{% static 'adm_assets/js/main.js' %}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Document ready");
+            var table;
+
+            // Initialize DataTable with custom options
+            try {
+                table = $('#table1').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": false,
+                    "info": false,
+                    "lengthChange": false,
+                    "pageLength": 10,
+                    "language": {
+                        "paginate": {
+                            "next": "Next",
+                            "previous": "Previous"
+                        },
+                        "search": "Search:" // Keep the "Search:" label
+                    },
+                    "dom": '<"top"f>rt<"bottom"p><"clear">',
+                    "initComplete": function(settings, json) {
+                        console.log("DataTable initialized");
+                        // Enhance the default search box
+                        $('.dataTables_filter input')
+                            .attr('placeholder', 'Enter search term...')
+                            .css('width', '300px');
+                        
+                        // Remove the loading class to show the table
+                        $('#table1').removeClass('table-loading');
+                    }
+                });
+            } catch (error) {
+                console.error("Error initializing DataTable:", error);
+            }
+        });
+    </script>
+</body>
+
+</html>

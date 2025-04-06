@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ServEase Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .container {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .no-border {
+            border: none;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body><br><br>
+    <div class="container">
+        <div class="header">
+            <h2>TAX INVOICE</h2>
+            <div class="logo">ServEase</div>
+
+        </div>
+        
+
+        <table>
+            <tr>
+                <td width="15%"><strong>Bill to</strong></td>
+                <td width="35%">{{ customer.firstname }} {{ customer.lastname }}</td>
+                <td width="15%"><strong>Invoice Number</strong></td>
+                <td colspan="2">{{ invoice_number }}</td>
+            </tr>
+            <tr>
+                <td><strong>Address</strong></td>
+                <td rowspan="2">{{ booking.address }}</td>
+                <td><strong>Invoice Date</strong></td>
+                <td colspan="2">{% now "d/m/Y" %}</td>
+            </tr>
+            <tr>
+                <td><strong>Phone</strong></td>
+                <td><strong>Service Date</strong></td>
+                <td colspan="2">{{ booking.appointment_date|date:"d/m/Y" }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email</strong></td>
+                <td>{{ customer.email }}</td>
+                <td><strong>Service Time</strong></td>
+                <td colspan="2">{{ booking.appointment_time }}</td>
+            </tr>
+            <tr>
+                <td><strong>Worker Name</strong></td>
+                <td>{{ worker.firstname }} {{ worker.lastname }}</td>
+                <td><strong>Worker Type</strong></td>
+                <td colspan="2">{{ booking.worker_type }}</td>
+            </tr>
+            <tr>
+                <td><strong>Payment Status</strong></td>
+                <td colspan="4">{{ booking.status }}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th width="10%">Sr. No.</th>
+                <th width="70%">Service Details</th>
+                <th width="20%">Amount</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <strong>Service Type:</strong> {{ booking.service_type }}<br>
+                    <strong>Description:</strong> {{ booking.description|default:"nil" }}<br>
+                    <strong>Hours Booked:</strong> {{ booking.hours_booked }}<br>
+                    <strong>Rate per Hour:</strong> Rs.200
+                </td>
+                <td class="text-right">
+                    Rs.{{ booking.pay_amount|floatformat:2 }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right"><strong>Total Amount</strong></td>
+                <td class="text-right"><strong>Rs.{{ booking.pay_amount|floatformat:2 }}</strong></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td width="50%" class="no-border"><strong>Total Invoice Value</strong></td>
+                <td width="50%" class="no-border">Rs.{{ booking.pay_amount|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td class="no-border"><strong>Total Invoice value (in words)</strong></td>
+                <td class="no-border">{{ amount_in_words }}</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p>This is a computer-generated invoice and does not require a signature.</p>
+            <p>Address: ServEase</p>
+            <p>Website: [Company Website] | Email: servease.website@gmail.com | Phone: [Company Phone]</p>
+            <!-- <p>Date & Time of Preparation: {{ booking.created_at|date:"d/m/Y H:i:s" }}</p> -->
+        </div>
+    </div>
+</body>
+</html>

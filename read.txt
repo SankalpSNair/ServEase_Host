@@ -1,0 +1,29 @@
+Super user credentials
+
+username: Super123
+pass: Super@123
+
+
+
+http://127.0.0.1:8000/social-auth/complete/google-oauth2/
+
+got log commands below
+
+cd git_log
+PS C:\Users\Aquarius\Desktop\Project\git_log> git clone https://github.com/SankalpSNair/ServEase.git
+Cloning into 'ServEase'...
+remote: Enumerating objects: 1956, done.
+remote: Counting objects: 100% (1956/1956), done.
+remote: Compressing objects: 100% (1546/1546), done.
+remote: Total 1956 (delta 349), reused 1956 (delta 349), pack-reused 0
+Receiving objects: 100% (1956/1956), 19.83 MiB | 5.61 MiB/s, done.
+Resolving deltas: 100% (349/349), done.
+Updating files: 100% (1887/1887), done.
+PS C:\Users\Aquarius\Desktop\Project\git_log> cd ServEase
+PS C:\Users\Aquarius\Desktop\Project\git_log\ServEase> git log > git-log.txt
+PS C:\Users\Aquarius\Desktop\Project\git_log\ServEase> git log --pretty=format:"%h - %an, %ad : %s" --date=short --graph --all --decorate > git-log.txt
+PS C:\Users\Aquarius\Desktop\Project\git_log\ServEase> 
+
+
+key_id= rzp_test_C15G4r2wYCMSfs
+secret= hkXjLXzmwDe7EjP2ysSeU15N

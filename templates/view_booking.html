@@ -1,0 +1,986 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home</title>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+    <style>
+        .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+      
+        .blog-post-thumb {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .blog-post-thumb .blog-content {
+            padding: 15px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        .blog-post-thumb .img img {
+            width: 65%;
+            height: auto;
+            display: inline;
+        
+        }
+        
+    </style>
+    <style>
+        /* General styles for the profile section */
+#profile {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.profile-table, .profile-table th, .profile-table td {
+    border: 1px solid #ddd; /* Border color and thickness */
+}
+
+.profile-table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.profile-label {
+    font-weight: bold;
+    width: 150px; /* Adjust width as needed */
+    text-align: right;
+}
+
+.profile-value {
+    text-align: left;
+}
+
+.profile-pic-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+}
+
+.save-profile-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.save-profile-btn:hover {
+    background-color: #0056b3;
+}
+input, optgroup, select, textarea {
+    margin: 0;
+    width: 480px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+/* Style for the booking card */
+.booking-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.booking-card h4 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.booking-card p {
+    margin: 10px 0;
+}
+
+.booking-card p strong {
+    color: #333;
+}
+
+.booking-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Style for the payment button */
+.btn-payment {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #9064E9;; /* Green color for payment */
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-payment:hover {
+    background-color: #9064E9;; /* Darker green on hover */
+}
+
+/* Style for the button to go home */
+.btn-home {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #802796;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-home:hover {
+    background-color: #c769e4;
+}
+
+/* Booking table styles */
+.table-responsive {
+    margin-top: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #9064E9;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    border-top: 1px solid #f0f0f0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(144, 100, 233, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(144, 100, 233, 0.1);
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #9064E9;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body p {
+    margin-bottom: 10px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.bookings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bookings-header h2 {
+    margin: 0;
+}
+
+.action-buttons {
+    white-space: nowrap;
+}
+
+.action-buttons .btn {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .bookings-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bookings-header .btn {
+        margin-top: 10px;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .action-buttons .btn {
+        margin-bottom: 5px;
+    }
+}
+
+/* Modal styles */
+.modal-backdrop {
+    display: none;
+}
+
+.modal {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    margin: 1.75rem auto;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 500px;
+    }
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: translate(0, -50px);
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .footer {
+        margin-top: auto; /* Push footer to the bottom */
+    }   
+/* Notification styles */
+.notification-container {
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    padding: 0.4em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    border-radius: 0.25rem;
+}
+
+.bg-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.bg-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bg-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.bg-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+/* ... (rest of the styles remain unchanged) ... */
+
+    </style>
+    <!-- Add this in the <head> section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Add this to your existing <style> section or in a separate CSS file -->
+    <style>
+        .star-rating {
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .star-rating .fas.fa-star.active {
+            color: #ffc107;
+        }
+    </style>
+    </head>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <!-- Notification area for customers -->
+            <div id="notification-container" class="notification-container" style="display: none;">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <span id="notification-message"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+
+                            <li><a href="{% url 'home' %}" class="active" style="font-size: 15px;">Home</a></li>
+                            <li><a href="#features" style="font-size: 15px;">About</a></li>
+                            <li><a href="{%url 'services'%}" style="font-size: 15px;">Services</a></li>
+                            <li><a href="{% url 'emergency' %}" style="font-size: 15px;">Emergency</a></li>
+                            <!-- <li><a href="#" style="font-size: 15px;">Blog Entries</a></li> -->
+                            <li><a href="#" style="font-size: 15px;">Contact Us</a></li>
+                            <li><a href="{% url 'view_bookings' %}" style="font-size: 15px;">Bookings</a></li>
+                            <li><a href="{% url 'logout' %}" style="font-size: 15px;">Log Out</a></li>
+                            <li><a href="#" style="font-size: 15px;">Hey,Sankalp</a></li>
+                                
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="profile" class="section home-feature">
+        <div class="container">
+            <div class="bookings-header">
+                <h2>Your Bookings</h2>
+                <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
+            </div>
+            {% if bookings %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Worker Type</th>
+                                <th>Worker Name</th>
+                                <th>Appointment Date</th>
+                                <th>Amount Payable</th>
+                                <th>Status</th>
+                                <th>Rating</th>  <!-- New column for rating -->
+                                <th>Actions</th>
+                                <th>Invoice</th>  <!-- New column for invoice -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.worker_type }}</td>
+                                <td>{{ booking.worker_id.firstname }} {{ booking.worker_id.lastname }}</td>
+                                <td>{{ booking.appointment_date }}</td>
+                                <td>₹{{ booking.pay_amount }}</td>
+                                <td>{{ booking.status }}</td>
+                                <td>
+                                    {% if booking.status == 'Completed' %}
+                                        <button class="btn btn-sm btn-primary rate-booking-btn" 
+                                                data-booking-id="{{ booking.id }}" 
+                                                data-worker-id="{{ booking.worker_id.user_id}}"
+                                                data-customer-id="{{ booking.customer_id.user_id}}">Rate</button>
+                                    {% else %}
+                                        <button class="btn btn-sm btn-secondary" disabled>Rate</button>
+                                    {% endif %}
+                                </td>
+                                <td class="action-buttons">
+                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailsModal{{ booking.id }}">Details</button>
+                                    
+                                    {% if booking.status == 'Pending' %}
+                                        <span class="badge bg-warning">Waiting for worker acceptance</span>
+                                        <button class="btn btn-sm btn-danger cancel-booking-btn" data-booking-id="{{ booking.id }}">Cancel</button>
+                                    {% elif booking.status == 'Confirmed' %}
+                                        <a href="{% url 'create_payment' booking.id %}" class="btn btn-sm btn-success">Make Payment</a>
+                                        <button class="btn btn-sm btn-danger cancel-booking-btn" data-booking-id="{{ booking.id }}">Cancel</button>
+                                    {% elif booking.status == 'Paid' %}
+                                        <button class="btn btn-sm btn-success" disabled>Paid</button>
+                                        <button class="btn btn-sm btn-danger cancel-booking-btn" data-booking-id="{{ booking.id }}">Cancel</button>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if booking.status == 'Paid' or booking.status == 'Completed' %}
+                                        <a href="{% url 'download_invoice' booking.id %}" class="btn btn-sm btn-primary" target="_blank">Download Invoice</a>
+                                    {% else %}
+                                        <button class="btn btn-sm btn-secondary" disabled>Invoice N/A</button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            
+                                
+                                <!-- Modal for booking details -->
+                                <div class="modal fade" id="detailsModal{{ booking.id }}" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel{{ booking.id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="detailsModalLabel{{ booking.id }}">Booking Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Appointment Date:</strong> {{ booking.appointment_date }}</p>
+                                                <p><strong>Appointment Time:</strong> {{ booking.appointment_time }}</p>
+                                                <p><strong>Service Type:</strong> {{ booking.service_type }}</p>
+                                                <p><strong>Worker Name:</strong> {{ booking.worker_id.firstname }} {{ booking.worker_id.lastname }}</p>
+                                                <p><strong>Worker Phone:</strong> {{ booking.worker_id.phone }}</p>
+                                                <p><strong>Service Description:</strong> {{ booking.description }}</p>
+                                                <p><strong>Service Address:</strong> {{ booking.address }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p>You have no bookings yet.</p>
+            {% endif %}
+        </div>
+    </section>
+    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingModalLabel">Rate Our Service</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="ratingForm">
+                        <input type="hidden" id="bookingId" name="booking_id">
+                        <input type="hidden" id="workerId" name="worker_id">
+                        <input type="hidden" id="customerId" name="customer_id">
+                        <div class="form-group">
+                            <label for="rating">Rating:</label>
+                            <div class="star-rating">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="rating" name="rating" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitRating">Submit Rating</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js5' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script>
+        // JavaScript to enforce time constraints
+        document.querySelector('form').addEventListener('submit', function (e) {
+            var timeInput = document.getElementById('appointment_time');
+            var timeValue = timeInput.value;
+    
+            if (timeValue) {
+                var timeParts = timeValue.split(':');
+                var hours = parseInt(timeParts[0], 10);
+    
+                if (hours < 6 || hours >= 18) {
+                    e.preventDefault(); // Prevent form submission
+                    alert('The appointment time must be between 06:00 and 18:00.');
+                    timeInput.focus();
+                }
+            }
+        });
+    
+        // Set the minimum date to today
+        document.getElementById('appointment_date') && document.getElementById('appointment_date').setAttribute('min', new Date().toISOString().split('T')[0]);
+        
+        // Function to show notifications
+        function showNotification(message) {
+            document.getElementById('notification-message').textContent = message;
+            document.getElementById('notification-container').style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(function() {
+                document.getElementById('notification-container').style.display = 'none';
+            }, 5000);
+        }
+        
+        // Check for booking status changes
+        function checkForBookingUpdates() {
+            fetch('/check_booking_updates/', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.has_updates) {
+                    showNotification(data.message);
+                    if (data.reload) {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 3000);
+                    }
+                }
+            })
+            .catch(error => console.error('Error checking for updates:', error));
+        }
+        
+        // Check for updates every 30 seconds
+        setInterval(checkForBookingUpdates, 30000);
+        
+        // Check for updates on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkForBookingUpdates();
+        });
+    </script>
+<script>
+    $(document).ready(function() {
+        // Function to show modal
+        function showModal(modalId) {
+            var $modal = $('#' + modalId);
+            $modal.addClass('show');
+            $modal.css('display', 'block');
+            $('body').addClass('modal-open');
+        }
+
+        // Function to hide modal
+        function hideModal(modalId) {
+            var $modal = $('#' + modalId);
+            $modal.removeClass('show');
+            $modal.css('display', 'none');
+            $('body').removeClass('modal-open');
+        }
+
+        // Attach click event to detail buttons
+        $('.btn-info[data-toggle="modal"]').on('click', function(e) {
+            e.preventDefault();
+            var modalId = $(this).data('target').substring(1);
+            showModal(modalId);
+        });
+
+        // Attach click event to close buttons
+        $('.modal .close, .modal .btn-secondary').on('click', function(e) {
+            e.preventDefault();
+            var modalId = $(this).closest('.modal').attr('id');
+            hideModal(modalId);
+        });
+
+        // Close modal when clicking outside
+        $('.modal').on('click', function(e) {
+            if ($(e.target).hasClass('modal')) {
+                hideModal($(this).attr('id'));
+            }
+        });
+
+
+        // Attach click event to cancel buttons
+        $('.cancel-booking-btn').on('click', function(e) {
+            e.preventDefault();
+            var bookingId = $(this).data('booking-id');
+            var $button = $(this);
+
+            // Disable the button and change text
+            $button.prop('disabled', true).text('Cancelling...');
+
+            // Function to process the cancellation
+            function processCancellation(nonRefundable) {
+                $.ajax({
+                    url: '{% url "update_booking_status" %}',
+                    method: 'POST',
+                    data: {
+                        booking_id: bookingId,
+                        status: 'Cancelled',
+                        non_refundable: nonRefundable
+                    },
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    success: function(response) {
+                        console.log('Cancellation response:', response);
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Booking cancelled successfully.',
+                                icon: 'success',
+                                confirmButtonColor: '#9064E9'
+                            }).then(() => {
+                                location.reload(); // Reload the page to reflect the changes
+                            });
+                        } else if (response.requires_confirmation) {
+                            // This is a paid booking that requires confirmation for non-refundable cancellation
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'This booking has already been paid. If you cancel, the booking amount will NOT be refunded. Do you still want to proceed?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'Yes, cancel booking',
+                                cancelButtonText: 'No, keep my booking'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // User confirmed non-refundable cancellation
+                                    processCancellation(true);
+                                } else {
+                                    // User decided not to cancel
+                                    $button.prop('disabled', false).text('Cancel');
+                                }
+                            });
+                        } else {
+                            // Other error
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.error || 'Error cancelling booking. Please try again.',
+                                icon: 'error',
+                                confirmButtonColor: '#9064E9'
+                            });
+                            $button.prop('disabled', false).text('Cancel');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error cancelling booking:', status, error);
+                        console.error('Response:', xhr.responseText);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Error cancelling booking. Please try again.',
+                            icon: 'error',
+                            confirmButtonColor: '#9064E9'
+                        });
+                        $button.prop('disabled', false).text('Cancel');
+                    }
+                });
+            }
+
+            // Start the cancellation process (initially with non_refundable=false)
+            processCancellation(false);
+        });
+
+        // Modify the rate button click event
+        $('.rate-booking-btn').on('click', function(e) {
+            e.preventDefault();
+            var bookingId = $(this).data('booking-id');
+            var workerId = $(this).data('worker-id');
+            var customerId = $(this).data('customer-id');
+            console.log("Booking ID:", bookingId, "Worker ID:", workerId, "Customer ID:", customerId);
+            $('#bookingId').val(bookingId);
+            $('#workerId').val(workerId);
+            $('#customerId').val(customerId);
+            $('#ratingModal').modal('show');
+        });
+
+        // Star rating functionality
+        $('.star-rating .fa-star').on('click', function() {
+            var rating = $(this).data('rating');
+            $('#rating').val(rating);
+            $('.star-rating .fa-star').removeClass('active');
+            $(this).addClass('active').prevAll().addClass('active');
+        });
+
+        // Hover effect
+        $('.star-rating .fa-star').on('mouseover', function() {
+            var hoverRating = $(this).data('rating');
+            $('.star-rating .fa-star').removeClass('active');
+            $(this).addClass('active').prevAll().addClass('active');
+        }).on('mouseout', function() {
+            var rating = $('#rating').val();
+            if (rating) {
+                $('.star-rating .fa-star').removeClass('active');
+                $('.star-rating .fa-star:lt(' + rating + ')').addClass('active');
+            } else {
+                $('.star-rating .fa-star').removeClass('active');
+            }
+        });
+
+        // Reset stars when modal is closed
+        $('#ratingModal').on('hidden.bs.modal', function () {
+            $('#rating').val('');
+            $('.star-rating .fa-star').removeClass('active');
+        });
+
+        // Modify the rating submission
+        $('#submitRating').on('click', function() {
+            var rating = $('#rating').val();
+            if (!rating) {
+                alert('Please select a rating');
+                return;
+            }
+
+            var formData = {
+                booking_id: $('#bookingId').val(),
+                worker_id: $('#workerId').val(),
+                customer_id: $('#customerId').val(),
+                rating: rating,
+                comment: $('#comment').val()
+            };
+
+            console.log("Sending data:", formData);
+
+            $.ajax({
+                url: '{% url "submit_rating" %}',
+                type: 'POST',
+                data: formData,
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                success: function(response) {
+                    console.log("Success response:", response);
+                    alert('Rating submitted successfully!');
+                    $('#ratingModal').modal('hide');
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error response:", xhr.responseText);
+                    alert('An error occurred while submitting the rating.');
+                }
+            });
+        });
+
+        // Function to get CSRF token
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+    </script>
+    <!-- For profile -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

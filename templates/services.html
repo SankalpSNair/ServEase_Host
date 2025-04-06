@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>Home</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+    <style>
+        .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+      
+        .blog-post-thumb {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img {
+            width: 100%;
+            overflow: hidden;
+        }
+        .blog-post-thumb .img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .blog-post-thumb .blog-content {
+            padding: 15px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        .blog-post-thumb .img img {
+            width: 65%;
+            height: auto;
+            display: inline;
+        
+        }
+        html, body {
+            overflow: hidden;
+        }
+    </style>
+    </head>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+
+                                <li><a href="{% url 'home' %}" class="active" style="font-size: 18px;">Home</a></li>
+                                <li><a href="#features" style="font-size: 18px;">About</a></li>
+                                <li><a href="{%url 'services'%}" style="font-size: 18px;">Services</a></li>
+                                <li><a href="{% url 'emergency' %}" style="font-size: 18px;">Emergency</a></li>
+                                <li><a href="{% url 'view_bookings' %}" style="font-size: 18px;">Bookings</a></li>
+                                <li><a href="{% url 'logout' %}" style="font-size: 18px;">Log Out</a></li>
+                                <!-- <li><a href="#" style="font-size: 15px;">Hey,Sankalp</a></li> -->
+                                
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- ***** Blog Start ***** -->
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <p class="copyright">Copyright &copy; 2024 ServEase</p> -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- ***** Features Small Start ***** -->
+    <section id="services" class="section home-feature">
+        <div class="center-heading">
+            <h2>Services</h2><br>
+        </div>
+        <div class="container">
+            <div class="col-lg-12">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'assets/images/featured-item-01.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title" onclick="window.location.href='{% url 'view_maids' %}'" style="cursor: pointer;">
+                                    House Maids
+                                </h5>
+                                <p>Professional cleaning and household management services for your home</p>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'assets/images/featured-item-01.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title" onclick="window.location.href='{% url 'view_nurses' %}'" style="cursor: pointer;">Home Nurses</h5>
+                                <p>Skilled healthcare professionals providing personalized care in the comfort of your home</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'assets/images/featured-item-01.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title" onclick="window.location.href='{% url 'view_electricians' %}'" style="cursor: pointer;">Electricians</h5>
+                                <p>Expert electrical services for installations, repairs, and maintenance in your home or office</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                         <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'assets/images/featured-item-01.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title"  onclick="window.location.href='{% url 'view_plumbers' %}'" style="cursor: pointer;">Plumbers</h5>
+                                <p>Reliable plumbing solutions for all your water and drainage system needs</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                         <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'assets/images/featured-item-01.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title" onclick="window.location.href='{% url 'view_carpenters' %}'" style="cursor: pointer;">Carpenters</h5>
+                                <p>Skilled craftsmen for custom woodwork, furniture repair, and home improvement projects</p>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js5' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <!-- For profile -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var profileLink = document.getElementById("profile-link");
+    var profilePopup = document.getElementById("profile-popup");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    profileLink.onclick = function() {
+        profilePopup.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+        profilePopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == profilePopup) {
+            profilePopup.style.display = "none";
+        }
+    }
+    });
+    </script>
+
+  </body>
+</html>

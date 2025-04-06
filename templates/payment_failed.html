@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Failed</title>
+  <link href="https://cdn.razorpay.com/static/assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.razorpay.com/static/assets/css/payments.css">
+</head>
+<body>
+  <div class="container">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="text-center">
+          <h1 class="error-code">Payment Failed</h1>
+          <p class="error-description">Oops! Your payment was unsuccessful.</p>
+          <div class="error-or-divider">
+            <span></span>
+            <span>Possible reasons</span>
+            <span></span>
+          </div>
+          <ul class="error-reasons">
+            <li>Your payment was declined by the bank</li>
+            <li>Insufficient funds in your account</li>
+            <li>Incorrect card details entered</li>
+            <li>Transaction timed out</li>
+          </ul>
+          <div class="error-actions">
+            <a href="{% url 'view_bookings' %}" class="btn btn-primary">
+              <i class="fa fa-home"></i>
+              Back to Bookings
+            </a>
+            <a href="#" class="btn btn-default" onclick="window.history.back();">
+              <i class="fa fa-refresh"></i>
+              Try Again
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

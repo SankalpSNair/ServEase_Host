@@ -1,0 +1,340 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Worker Profile</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'work_assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'work_assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'work_assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'work_assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-image: url('{% static "work_assets/img/hero-bg-light.webp" %}');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding-top: 80px; /* Add padding to account for fixed header */
+    }
+
+    .main {
+      flex: 1 0 auto;
+    }
+
+    .profile-section {
+      padding-top: 40px; /* Reduced top padding */
+      padding-bottom: 60px;
+      background-color: rgba(248, 249, 250, 0.9);
+    }
+
+    .header {
+      z-index: 1000; /* Ensure header stays on top */
+      background-color: rgb(255 255 255);
+    }
+
+    .user-card-full {
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
+      margin-bottom: 2rem;
+    }
+    .bg-c-lite-green {
+      background: linear-gradient(to right, #1e30f3, #e8e8e8);
+    }
+    .user-profile {
+      padding: 20px 0;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      background-color: #fff;
+      color: #333;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .card-block {
+      padding: 1.25rem;
+    }
+    .m-b-25 {
+      margin-bottom: 25px;
+    }
+    .f-w-600 {
+      font-weight: 600;
+    }
+    .error-message {
+      color: red;
+      font-size: 0.8rem;
+    }
+    .social-link li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .social-link li a {
+      color: #6c757d;
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      flex-shrink: 0;
+      background-color: rgba(248, 249, 250, 0.9);
+    }
+    .profile-heading {
+     color: #333;
+     text-align: center;
+     margin-bottom: 30px;
+     font-weight: 600;
+     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+   }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'worker_index' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">ServEase</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'worker_index' %}#hero">Home</a></li>
+          <li><a href="{% url 'worker_index' %}#about">About</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="{% url 'view_my_booking' %}">Bookings</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'worker_verification' %}">Verification</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'worker_profile' %}">Profile</a>
+
+    </div>
+    
+  </header>
+
+  <main class="main">
+    <section id="profile" class="profile-section">
+      <div class="container">
+        <h2 class="profile-heading">Worker Profile</h2>
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10">
+            <div class="card user-card-full">
+              <div class="row m-0">
+                <div class="col-sm-4 bg-c-lite-green user-profile">
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25">
+                      <form action="{% url 'worker_profile' %}" method="post" enctype="multipart/form-data" id="profile-form">
+                        {% csrf_token %}
+                        <img id="profile-pic" src="{{ profile_picture_url }}" alt="Profile Picture" class="profile-pic" />
+                        <label for="profile-pic-input" class="custom-file-upload">
+                          <i class="bi bi-camera"></i> Change Photo
+                        </label>
+                        <input type="file" id="profile-pic-input" name="profile_pic" accept="image/*" style="display: none;" />
+                        <span id="profile-pic-error" class="error-message"></span>
+                        <h4 class="f-w-600 mt-3">{{ first_name }} {{ last_name }}</h4>
+                        <p>{{ usertype }}</p>
+                        <!-- Add average rating here -->
+                        <div class="mt-3">
+                          <h5 class="f-w-600">Rating</h5>
+                          <p>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            {{ average_rating|default:"N/A" }}
+                            <span class="text-muted">({{ total_ratings }} ratings)</span>
+                          </p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="card-block">
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                    <div class="row">
+                      <div class="col-sm-6 mb-3">
+                        <p class="m-b-10 f-w-600">First Name</p>
+                        <input type="text" id="first-name" name="first_name" value="{{ first_name }}" readonly class="form-control">
+                        <span id="first-name-error" class="error-message"></span>
+                      </div>
+                      <div class="col-sm-6 mb-3">
+                        <p class="m-b-10 f-w-600">Last Name</p>
+                        <input type="text" id="last-name" name="last_name" value="{{ last_name }}" readonly class="form-control">
+                        <span id="last-name-error" class="error-message"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 mb-3">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <input type="email" id="email" name="email" value="{{ email }}" disabled class="form-control">
+                        <span id="email-error" class="error-message"></span>
+                      </div>
+                      <div class="col-sm-6 mb-3">
+                        <p class="m-b-10 f-w-600">Phone</p>
+                        <input type="text" id="phone" name="phone" value="{{ phone }}" readonly class="form-control">
+                        <span id="phone-error" class="error-message"></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 mb-3">
+                        <p class="m-b-10 f-w-600">Address</p>
+                        <textarea id="address" name="address" rows="3" readonly class="form-control">{{ address }}</textarea>
+                        <span id="address-error" class="error-message"></span>
+                      </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                      <button type="button" id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                      <button type="submit" id="save-profile-btn" class="btn btn-success" style="display: none;">Save Changes</button>
+                    </div>
+                  </form>
+                  <ul class="social-link list-unstyled mt-4 mb-3">
+                    <li><a href="#!" data-toggle="tooltip" title="Facebook"><i class="bi bi-facebook"></i></a></li>
+                    <li><a href="#!" data-toggle="tooltip" title="Twitter"><i class="bi bi-twitter"></i></a></li>
+                    <li><a href="#!" data-toggle="tooltip" title="Instagram"><i class="bi bi-instagram"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">ServEase</strong><span>All Rights Reserved</span></p>
+      <div class="credits">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'work_assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'work_assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'work_assets/js/main.js' %}"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var editBtn = document.getElementById('edit-profile-btn');
+      var saveBtn = document.getElementById('save-profile-btn');
+      var inputs = document.querySelectorAll('.form-control');
+      var profileForm = document.getElementById('profile-form');
+      var profilePicInput = document.getElementById('profile-pic-input');
+      var profilePicError = document.getElementById('profile-pic-error');
+      var firstNameInput = document.getElementById('first-name');
+      var lastNameInput = document.getElementById('last-name');
+      var phoneInput = document.getElementById('phone');
+      var namePattern = /^[A-Za-z\s]+$/;
+      var phonePattern = /^\d{10}$/;
+
+      editBtn.addEventListener('click', function() {
+        inputs.forEach(function(input) {
+          if (input.id !== 'email') {
+            input.removeAttribute('readonly');
+          }
+        });
+        saveBtn.style.display = 'inline-block';
+        editBtn.style.display = 'none';
+      });
+
+      profileForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+          this.submit();
+        }
+      });
+
+      function validateForm() {
+        var isValid = true;
+
+        if (!namePattern.test(firstNameInput.value)) {
+          document.getElementById('first-name-error').textContent = 'Invalid first name. Only letters and spaces are allowed.';
+          isValid = false;
+        } else {
+          document.getElementById('first-name-error').textContent = '';
+        }
+
+        if (!namePattern.test(lastNameInput.value)) {
+          document.getElementById('last-name-error').textContent = 'Invalid last name. Only letters and spaces are allowed.';
+          isValid = false;
+        } else {
+          document.getElementById('last-name-error').textContent = '';
+        }
+
+        if (!phonePattern.test(phoneInput.value)) {
+          document.getElementById('phone-error').textContent = 'Invalid phone number. Must be exactly 10 digits.';
+          isValid = false;
+        } else {
+          document.getElementById('phone-error').textContent = '';
+        }
+
+        if (profilePicInput.files.length > 0) {
+          var file = profilePicInput.files[0];
+          var fileType = file.type;
+          var validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+          
+          if (!validImageTypes.includes(fileType)) {
+            profilePicError.textContent = 'Invalid file type. Only JPEG, PNG, and GIF files are allowed.';
+            isValid = false;
+          } else {
+            profilePicError.textContent = '';
+          }
+        }
+
+        return isValid;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

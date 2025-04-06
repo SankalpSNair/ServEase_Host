@@ -1,0 +1,771 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+    <title>Home</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/templatemo-softy-pinko.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adm_assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
+
+    <style>
+
+        /* Add your custom CSS styles here */
+       .serv {
+            background-color: #9064E9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-top: -6px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+ 
+       }
+       /* .profile-popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        }
+
+        .profile-popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        } */
+        .profile-popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0 0 0 / 57%);
+       
+         }
+
+        .profile-popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .profile-popup-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .profile-popup-content p {
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .profile-pic-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #profile-pic-input {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .profile-popup-content label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .profile-popup-content input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .save-profile-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .save-profile-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #ff589e;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-popup-content p {
+            word-wrap: break-word;
+        }
+        .welcome-area{
+            background-image: url('static/assets/images/banner-bg.png');
+        }
+
+        .mini_img{
+            width: 100%;
+        }
+        p{
+            font-size: 20px;
+            color:black;
+        }
+        .home-feature {
+            z-index: 0;
+        }
+        .features-small-item p {
+            z-index: 0;
+        }
+        .features-small-item .features-title {
+            z-index: 0;
+        }
+        .profile-pic-container {
+    text-align: center; /* Center-aligns all child elements */
+    margin: 20px auto; /* Center-aligns container and adds margin */
+}
+
+.profile-pic {
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    object-fit: cover;
+    margin-bottom: 10px; /* Adds space between the image and the button */
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width:150px;
+    text-align: center;
+    vertical-align: middle;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+.custom-file-upload i {
+    margin-right: 8px;
+}
+
+    </style>
+    <style>
+      
+    
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .recent-message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+    
+        .name {
+            margin-left: 15px;
+        }
+    
+        .name h5 {
+            margin: 0;
+            font-size: 18px;
+        }
+    
+        .name h6 {
+            margin: 0;
+            font-size: 14px;
+            color: #6c757d;
+        }
+    
+        .btn-light-primary {
+            background-color: #e1f0ff;
+            color: #3f8cff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn-light-primary:hover {
+            background-color: #3f8cff;
+            color: #ffffff;
+        }
+    </style>
+    <style>
+        .chat-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            z-index: 1000;
+        }
+
+        .chat-wrapper .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-wrapper .card-body {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .chat-content {
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .card-body.bg-grey {
+            background-color: #f2f7ff;
+        }
+
+        .chat {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .chat-right {
+            justify-content: flex-end;
+        }
+        .chat-left {
+            justify-content: flex-start;
+        }
+        .chat-message {
+            padding: 8px 12px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+        .chat-right .chat-message {
+            background-color: #435ebe;
+            color: white;
+        }
+        .chat-left .chat-message {
+            background-color: #e9ecef;
+            color: #333;
+        }
+
+        .close-chat-btn {
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #f2f7ff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-chat-btn:hover {
+            background-color: #e1e8f5;
+        }
+
+        .close-chat-btn i {
+            font-size: 20px;
+            color: #435ebe;
+        }
+
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #435ebe;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icon img {
+            width: 35px;
+            height: 35px;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .refresh-chat-btn {
+            background-color: transparent;
+            border: none;
+            color: #435ebe;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-chat-btn:hover {
+            transform: rotate(180deg);
+        }
+    </style>
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>  
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <!-- <img src="assets/images/logo.png" alt="Softy Pinko"/> -->
+                            <h5 class="serv">ServEase</h5>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}" class="active" style="font-size: 15px;">Home</a></li>
+                            <li><a href="#features" style="font-size: 15px;">About</a></li>
+                            <li><a href="{% url 'services' %}" style="font-size: 15px;">Services</a></li>
+                            <li><a href="{% url 'emergency' %}" style="font-size: 15px;">Emergency</a></li>
+                            <li>
+                                <a href="{% url 'view_bookings' %}" style="font-size: 15px; position: relative;">Bookings
+                                    {% if pending_booking_count > 0 %}
+                                    <span class="notification-badge">{{ pending_booking_count }}</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li><a href="{% url 'profile' %}" id="profile-link" style="font-size: 15px;">Profile</a></li>
+                            <li><a href="#" style="font-size: 15px;">Hey,{{first_name}}</a></li>
+                            <li><a href="{% url 'logout' %}" style="font-size: 15px;">Log Out</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    
+    
+
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Welcome Area Start ***** -->
+    
+
+    <div class="welcome-area" id="welcome">
+        <img src="{% static 'assets/images/banner-bg.png' %}" alt="Banner Image" class="banner-image">
+
+    
+
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1>We provide the best Services<br>Elevate your Home Services with <strong>ServEase</strong></h1>
+                        <p>ServEase is your ultimate solution for finding reliable professionals for all your household needs. </p>
+                        <a href="#features" class="main-button-slider">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+   
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'assets/images/left-image.png'%}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Why Choose <strong>ServEase?</strong></h2>
+                    </div>
+                    <div class="left-text">
+                        <p>
+                            <ul>
+                                <li><strong>Effortless Booking:</strong> Streamline your service hiring process with our user-friendly platform.</li>
+                                <li><strong>Trusted Professionals:</strong> Access a network of skilled and vetted professionals.</li>
+                                <li><strong>Quality Assurance:</strong> Read reviews and ratings to ensure you hire the best for your home.</li>
+                            </ul>
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Experience the Future of Home Services with <strong>ServEase</strong></h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Join us today and discover how ServEase can transform your home maintenance experience. Our platform is crafted with care to meet your needs, providing a hassle-free solution to keep your home running smoothly.</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{% static 'assets/images/right-image.png'%}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini" id="work-process">
+        <!-- <img src="{% static 'assets/images/work-process-bg.png' %}" alt="" class="mini_img"> -->
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <!-- <h1>Work Process</h1>
+                            <p>Aenean nec tempor metus. Maecenas ligula dolor, commodo in imperdiet interdum, vehicula ut ex. Donec ante diam.</p> -->
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright">Copyright &copy; 2024 ServEase</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/popper.js5' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <!-- For profile -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var profileLink = document.getElementById("profile-link");
+    var profilePopup = document.getElementById("profile-popup");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    profileLink.onclick = function() {
+        profilePopup.style.display = "block";
+    }
+
+    closeBtn.onclick = function() {
+        profilePopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == profilePopup) {
+            profilePopup.style.display = "none";
+        }
+    }
+    });
+    </script>
+
+    <div class="chat-wrapper" id="chatWrapper" style="display: none;">
+        <div class="card">
+            <div class="card-header">
+                <div class="media d-flex align-items-center">
+                    <div class="avatar me-3">
+                        <img src="{% static 'adm_assets/images/faces/1.jpg' %}" alt="" srcset="">
+                        <span class="avatar-status bg-success"></span>
+                    </div>
+                    <div class="name flex-grow-1">
+                        <h6 class="mb-0">Admin</h6>
+                        <!-- <span class="text-xs">Online</span> -->
+                    </div>
+                    <button class="btn btn-sm close-chat-btn" id="closeChat">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body pt-4 bg-grey">
+                <div class="chat-content" id="chatContent">
+                    <!-- Chat messages will be dynamically added here -->
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="message-form d-flex flex-direction-column align-items-center">
+                    <a href="#" class="black"><i class="bi bi-emoji-smile"></i></a>
+                    <div class="d-flex flex-grow-1 ml-4">
+                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message..">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-icon" id="chatIcon">
+        <img src="{% static 'assets/images/icons8-chat-100.png' %}" alt="Chat" title="Chat box icons created by Pixel perfect - Flaticon">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatIcon = document.getElementById('chatIcon');
+            const chatWrapper = document.getElementById('chatWrapper');
+            const closeChat = document.getElementById('closeChat');
+            const chatContent = document.getElementById('chatContent');
+            const messageInput = document.getElementById('messageInput');
+            const refreshButton = document.createElement('button');
+
+            // Add refresh button
+            refreshButton.innerHTML = '<i class="bi bi-arrow-clockwise"></i>';
+            refreshButton.className = 'btn btn-sm refresh-chat-btn';
+            refreshButton.style.marginLeft = '10px';
+            document.querySelector('.card-header .media').appendChild(refreshButton);
+
+            chatIcon.addEventListener('click', () => {
+                chatWrapper.style.display = 'block';
+                chatIcon.style.display = 'none';
+                loadMessages();
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatWrapper.style.display = 'none';
+                chatIcon.style.display = 'block';
+            });
+
+            refreshButton.addEventListener('click', loadMessages);
+
+            function addMessage(message, isUser = true) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = isUser ? 'chat chat-right' : 'chat chat-left';
+                messageDiv.innerHTML = `
+                    <div class="chat-body">
+                        <div class="chat-message">${message}</div>
+                    </div>
+                `;
+                chatContent.appendChild(messageDiv);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+
+            function loadMessages() {
+                fetch('/get_messages/')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            chatContent.innerHTML = '';
+                            data.messages.forEach(msg => {
+                                addMessage(msg.message, msg.sender === '{{first_name}}');
+                            });
+                        } else {
+                            console.error('Error loading messages:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== '') {
+                    const message = this.value.trim();
+                    fetch('/send_message/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: `message=${encodeURIComponent(message)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            addMessage(message, true);
+                            this.value = '';
+                        } else {
+                            console.error('Error sending message:', data.message);
+                            alert('Error sending message: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending the message.');
+                    });
+                }
+            });
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+    </script>
+    
+
+  </body>
+</html>
